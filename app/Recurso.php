@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Recurso extends Model
 {
     protected $fillable = [
+        'id',
         'nombre_recurso',
         'costo',
         'tipo_recurso_id',
