@@ -42,7 +42,7 @@
                                     <td>{{ $proyecto->nombre_proyecto }}</td>
                                     <td>
                                         <a href="{{ route('inno.show',$proyecto) }}" class="btn"><i class="fas fa-info"></i></a>
-                                        <a href="" class="btn"><i class="fas fa-pencil-alt"></i></a>
+                                        <a href="{{ route('inno.edit',$proyecto) }}" class="btn"><i class="fas fa-pencil-alt"></i></a>
                                     </td>
                                 </tr>
                             @endforeach

@@ -13,4 +13,8 @@ class Proyecto_redes_social extends Model
     public function Redes_social(){
         return $this->belongsTo('App\Redes_social');
     }
+
+    public function Proyecto(){
+        return $this->belongsTo('App\Proyecto');
+    }
 }

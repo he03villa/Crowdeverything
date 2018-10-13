@@ -125,9 +125,12 @@ class InnovadorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Proyecto $proyecto)
     {
-        //
+        $redes = Redes_social::get();
+        $tipo_recursos = Tipo_recurso::get();
+        $tipo_proyectos = Tipo_proyecto::get();
+        return view('inno.edit',compact('proyecto','redes','tipo_recursos','tipo_proyectos'));
     }
 
     /**
