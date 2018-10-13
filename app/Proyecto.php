@@ -18,7 +18,7 @@ class Proyecto extends Model
         'tipo_proyecto_id',
     ];
 
-    public function Usuario(){
+    public function User(){
         return $this->belongsTo('App\User');
     }
 

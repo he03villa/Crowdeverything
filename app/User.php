@@ -28,6 +28,7 @@ class User extends Authenticatable
         'estado',
         'ciudad_id',
         'tipo_documento_id',
+        'foto',
     ];
 
     /**

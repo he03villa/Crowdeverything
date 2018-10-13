@@ -14,7 +14,7 @@ class Tipo_recurso extends Model
         return $this->hasMany('App\Donacion');
     }
 
-    public function Recursos(){
+    public function Recurso(){
         return $this->hasMany('App\Recurso');
     }
 }

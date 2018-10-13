@@ -17,7 +17,7 @@ class Recurso extends Model
         return $this->belongsTo('App\Proyecto');
     }
 
-    public function Tipo_Recurso(){
+    public function Tipo_recurso(){
         return $this->belongsTo('App\Tipo_recurso');
     }
 }
