@@ -18,7 +18,6 @@
     {{ Html::script('js/scrip.js') }}
     {{ Html::script('js/jquery.easypiechart.js') }}
     {{ Html::script('js/chart.js') }}
-    <!--<script src="{{ asset('js/app.js') }}" defer></script>-->
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
