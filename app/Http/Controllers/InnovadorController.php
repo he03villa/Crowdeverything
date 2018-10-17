@@ -140,9 +140,85 @@ class InnovadorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,Proyecto $proyecto)
     {
-        //
+        $tipo_proyecto = Tipo_proyecto::where('nombre',$request->get('tipo_proyecto'))->get();
+        //$proyecto->foto = $request->file('ImageUpload')->store('public');
+        $proyecto->nombre_proyecto = $request->get('nombre_proyecto');
+        $proyecto->total = $request->get('total');
+        $proyecto->descripcion = $request->get('descripcion');
+        $proyecto->publicacion = 0;
+        $proyecto->user_id = $request->get('user_id');
+        $proyecto->tipo_proyecto_id = $tipo_proyecto->get(0)->id;
+        $proyecto->save();
+
+        $recurso_id = $request->get('id');
+        $recuso_nombre = $request->get('nombre');
+        $recuso_re = $request->get('recurso');
+        $recuso_tipo = $request->get('tipo');
+        $recursos = array();
+        $tipo = array();
+
+        foreach($recuso_tipo as $re){
+            $tipo_re = Tipo_recurso::where('nombre',$re)->get();
+            $tipo[] = $tipo_re->get(0)->id;
+        }
+
+        for ($i=0; $i < count($recuso_nombre); $i++) { 
+            $recursos[] = [
+                'id' => $recurso_id[$i],
+                'nombre_recurso' => $recuso_nombre[$i],
+                'costo' => $recuso_re[$i],
+                'tipo_recurso_id' => $tipo[$i]
+            ];
+        }
+
+        /*$fotos = $request->file('foto');
+        $proyecto_foto = array();
+        foreach($fotos as $fot){
+            $proyecto_foto[] = $fot->store('public');
+        }
+        
+        $foto = array();
+        for ($i=0; $i < count($proyecto_foto); $i++) { 
+            $foto[] = [
+                'nombre' => $proyecto_foto[$i]
+            ];   
+        }*/
+
+        $redes_url = $request->get('url');
+        $redes_tipo = $request->get('redes');
+        $tipo_redes = array();
+        foreach($redes_tipo as $re){
+            $tipo_re = Redes_social::where('nombre',$re)->get();
+            $tipo_redes[] = $tipo_re->get(0)->id;
+        }
+
+        $redes = array();
+        for ($i=0; $i < count($redes_url); $i++) { 
+            $redes[] = [
+                'url' => $redes_url[$i],
+                'redes_socials_id' => $tipo_redes[$i]
+            ];
+        }
+
+        for ($i=0; $i <count($recursos) ; $i++) { 
+            if($recursos[$i]['id'] == 0) {
+                $proyecto->Recurso()->create($recursos[$i]);
+            } else {
+                $recus = Recurso::where('id',$recursos[$i]['id'])->get();
+                $recus->get(0)->nombre_recurso = $recursos[$i]['nombre_recurso'];
+                $recus->get(0)->costo = $recursos[$i]['costo'];
+                $recus->get(0)->tipo_recurso_id = $recursos[$i]['tipo_recurso_id'];
+                $proyecto->Recurso()->saveMany($recus);
+            } 
+        }
+        
+        //return $proyecto->id;
+        /*$proyecto->Foto()->createMany($foto);
+        $proyecto->Redes()->createMany($redes);*/
+
+        return redirect()->route('user.perfil', $request->get('user_id'))->with('info', 'Proyecto se actuaalizo con exito');
     }
 
     /**

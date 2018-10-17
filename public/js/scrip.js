@@ -22,6 +22,7 @@ function recursos(recur){
     $('#res-recurso').append(
         "<div class='form-group'>"+
             "<label for='re'>Recurso "+ x +"</label>"+
+            "<input type='hidden' name='id[]' value=0>"+
             "<input type='text' class='form-control' name='nombre[]' id='re' placeholder='Nombre "+ x +"'>"+
             "<input type='number' class='form-control' name='recurso[]' id='re' placeholder='Recurso "+ x +"'>"+
             "<select class='form-control' name='tipo[]'>"+
@@ -37,6 +38,7 @@ function fotos(){
     $('#res-foto').append(
         "<div class='form-group'>"+
             "<label for='im'>Imagen "+ y +"</label>"+
+            "<input type='hidden' name='foto_id[]' value=0>"+
             "<input type='file' class='form-control' id='im' name='foto[]'>"+
         "</div>"
     );

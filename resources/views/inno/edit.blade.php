@@ -51,6 +51,7 @@
                             @foreach($proyecto->Recurso as $recurso)
                                 <div class="form-group">
                                     <label for='re'>Recurso </label>
+                                    <input type="hidden" name="id[]" value="{{ $recurso->id }}">
                                     <input type='text' class='form-control' name='nombre[]' id='re' placeholder='Nombre' value="{{ $recurso->nombre_recurso }}">
                                     <input type='number' class='form-control' name='recurso[]' id='re' placeholder='Recurso' value="{{ $recurso->costo }}">
                                     <select class='form-control' name='tipo[]'>
@@ -71,6 +72,7 @@
                                 @foreach($proyecto->Foto as $foto)
                                     <div class='form-group'>
                                         <label for='im'>Imagen</label>
+                                        <input type="hidden" name="foto_id[]" value="{{ $foto->id }}">
                                         <input type='file' class='form-control' id='im' name='foto[]' value="{{ $foto->nombre }}">
                                     </div>
                                 @endforeach
@@ -105,6 +107,21 @@
                                 @endforeach
                             <div id="res-redes"></div>
                             <button id="redes" type="button" class="btn btn-secondary" onclick="rede({{ json_encode($redes) }})">Agregar redes</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-ms-12 col-col-xl-12">
+                            <div class="form-group">
+                                <label for="" class="center">Acepta los terminos</label><br>
+                                <div class="container_radio">
+                                    <input type="radio" name="opcion"> Si
+                                    <input type="radio" name="opcion"> No
+                                </div>
+                                <div class="ordenar-2">
+                                    <button class="btn btn-secondary" id="aceptar" type="submit">Acepta</button>
+                                    <a href="{{ route('user.perfil',Auth::user()) }}" class="btn btn-secondary">Cancelar</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 {!! Form::close() !!}

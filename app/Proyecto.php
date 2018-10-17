@@ -9,6 +9,7 @@ class Proyecto extends Model
     //use Proyecto_redes_social, Donacion, User;
 
     protected $fillable = [
+        'id',
         'foto', 
         'nombre_proyecto',
         'descripcion', 
