@@ -85,6 +85,7 @@
                                 @foreach($proyecto->Redes as $redes1)
                                     <div class='form-group'>
                                         <label for='re'>Redes social </label>
+                                        <input type="hidden" name="redes1[]" value="{{ $redes1->id }}">
                                         <input type='text' class='form-control' id='re' name='url[]' placeholder='Url' value="{{ $redes1->url }}">
                                         <select class='form-control' name='redes[]'>
                                             @if($redes1->redes_socials_id == 1)

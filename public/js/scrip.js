@@ -55,6 +55,7 @@ function rede(rede){
     $('#res-redes').append(
         "<div class='form-group'>"+
             "<label for='re'>Redes social "+ z +"</label>"+
+            "<input type='hidden' name='redes1[]' value=0>"+
             "<input type='text' class='form-control' id='re' name='url[]' placeholder='Url "+ z     +"'>"+
             "<select class='form-control' name='redes[]'>"+
                 "<option>Seleccione la red social</option>"+

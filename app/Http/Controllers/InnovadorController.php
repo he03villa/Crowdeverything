@@ -8,6 +8,8 @@ use App\Tipo_proyecto;
 use App\Redes_social;
 use App\Proyecto;
 use App\Recurso;
+use App\Foto;
+use App\Proyecto_redes_social;
 
 class InnovadorController extends Controller
 {
@@ -143,7 +145,7 @@ class InnovadorController extends Controller
     public function update(Request $request,Proyecto $proyecto)
     {
         $tipo_proyecto = Tipo_proyecto::where('nombre',$request->get('tipo_proyecto'))->get();
-        //$proyecto->foto = $request->file('ImageUpload')->store('public');
+        if($request->file('ImageUpload') != NULL) $proyecto->foto = $request->file('ImageUpload')->store('public');
         $proyecto->nombre_proyecto = $request->get('nombre_proyecto');
         $proyecto->total = $request->get('total');
         $proyecto->descripcion = $request->get('descripcion');
@@ -173,21 +175,29 @@ class InnovadorController extends Controller
             ];
         }
 
-        /*$fotos = $request->file('foto');
+        $fotos = $request->file('foto');
+        $foto_id = $request->get('foto_id');
         $proyecto_foto = array();
-        foreach($fotos as $fot){
-            $proyecto_foto[] = $fot->store('public');
+        for ($i=0; $i < count($foto_id); $i++) { 
+            if($fotos[$i] == NULL){
+                $proyecto_foto[] = 'null';
+            }
+            else{
+                //$proyecto_foto[] = $fotos[$i]->store('public');
+            }
         }
         
         $foto = array();
-        for ($i=0; $i < count($proyecto_foto); $i++) { 
+        for ($i=1; $i <= count($foto_id); $i++) {
             $foto[] = [
-                'nombre' => $proyecto_foto[$i]
+                'id' => $foto_id[$i-1],
+                'nombre' => $proyecto_foto[$i-1]
             ];   
-        }*/
+        }
 
         $redes_url = $request->get('url');
         $redes_tipo = $request->get('redes');
+        $redes_id = $request->get('redes1');
         $tipo_redes = array();
         foreach($redes_tipo as $re){
             $tipo_re = Redes_social::where('nombre',$re)->get();
@@ -195,8 +205,9 @@ class InnovadorController extends Controller
         }
 
         $redes = array();
-        for ($i=0; $i < count($redes_url); $i++) { 
+        for ($i=0; $i < count($redes_id); $i++) { 
             $redes[] = [
+                'id' => $redes_id[$i],
                 'url' => $redes_url[$i],
                 'redes_socials_id' => $tipo_redes[$i]
             ];
@@ -214,10 +225,30 @@ class InnovadorController extends Controller
             } 
         }
         
-        //return $proyecto->id;
-        /*$proyecto->Foto()->createMany($foto);
-        $proyecto->Redes()->createMany($redes);*/
+        for ($i=0; $i < count($foto); $i++) { 
+            if($foto[$i]['id']==0){
+                $proyecto->Foto()->create($foto[$i]);
+            }
+            else {
+                if($foto[$i]['nombre'] != 'null'){
+                    $fo = Foto::where('id',$foto[$i]['id'])->get();
+                    $fo->get(0)->nombre = $foto[$i]['nombre'];
+                    $proyecto->Foto()->saveMany($fo);
+                }
+            }
+        }
 
+        for ($i=0; $i < count($redes); $i++) { 
+            if ($redes[$i]['id'] == 0) {
+                $proyecto->Redes()->create($redes[$i]);
+            } else {
+                $red = Proyecto_redes_social::where('id',$redes[$i]['id'])->get();
+                $red->get(0)->url = $redes[$i]['url'];
+                $red->get(0)->redes_socials_id = $redes[$i]['redes_socials_id'];
+                $proyecto->Redes()->saveMany($red);
+            }
+        }
+        
         return redirect()->route('user.perfil', $request->get('user_id'))->with('info', 'Proyecto se actuaalizo con exito');
     }
 
