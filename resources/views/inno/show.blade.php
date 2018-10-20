@@ -6,7 +6,7 @@
             <div class="col-sm-8">
                 <div class="row" style="background-color: white">
                     <div class="col-ms-6 col-xl-4">
-                        <img src="{{ Storage::url($proyecto->foto) }}" id="perfil" title="perfil" class="img-ms">
+                        <img src="{{ Storage::url($proyecto->foto) }}" id="perfil" title="perfil" class="img-ms" style="margin-top:10px">
                         <h1>{{ $proyecto->nombre_proyecto }}</h1>
                     </div>
                     <div class="col-ms-6 col-xl-8">
