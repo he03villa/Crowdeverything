@@ -25,7 +25,7 @@
                             </div>
                             <div class="col-sm-4">
                                 <div class="box">
-                                    <label for="">Recurso Humano</label>
+                                    <label for="">Talento Humano</label>
                                     <div class="chart" data-percent="0">0%</div>
                                 </div>
                             </div>

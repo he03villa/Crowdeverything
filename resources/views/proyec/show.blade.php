@@ -25,7 +25,7 @@
                             </div>
                             <div class="col-sm-4">
                                 <div class="box">
-                                    <label for="">Recurso Humano</label>
+                                    <label for="">Talento Humano</label>
                                     <div class="chart" data-percent="0">0%</div>
                                 </div>
                             </div>
@@ -70,17 +70,6 @@
                         @endif
                     </div>
                 </div>
-                <div class="row" style="background-color: white;margin-top: 10px">
-                    <div class="col-sm-12" style="margin-left: 60px">
-                        @if($proyecto->publicacion == 0)
-                            <h1 style="color:red">No se a publicado su proyecto</h1>
-                        @else
-                            @if($proyecto->publicacion == 1)
-                                <h1 style="color:gren">No se a publicado su proyecto</h1>
-                            @endif
-                        @endif
-                    </div>                    
-                </div>
             </div>
             <div class="col-sm-4">
                 <div class="row" style="background-color: white; margin-left: 5px">
@@ -93,7 +82,11 @@
                         $user = $proyecto->User
                     @endphp
                     <div class="col-sm-6">
-                        <img src="{{ Storage::url($user->foto) }}" class="img-lg" alt="imagen de perfil" style="margin-left: 20px">
+                        @if($user->foto)
+                            <img src="{{ Storage::url($user->foto) }}" class="img-lg" alt="imagen de perfil" style="margin-left: 20px">
+                        @else
+                            {{ Html::image('img/perfil.jpg','Imagen no encontrada', array('id' => 'perfil', 'title' => 'perfil', 'class' => 'img-lg', 'style' => 'margin-left: 20px')) }}
+                        @endif
                     </div>
                     <div class="col-sm-6">
                         <label for="">{{ $user->nombre." ".$user->apellido }}</label>
@@ -182,6 +175,8 @@
                                         @endif
                                     @endif
                                 @endfor
+                            @else
+                                <h1>No hay redes social en este proyecto</h1>
                             @endif
                         </div>
                     </div>
