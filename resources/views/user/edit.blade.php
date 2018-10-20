@@ -80,6 +80,14 @@
                         </div>    
                     </div>
                     <div class="row">
+                        <div class="col-ms-12 col-xl-12">
+                            <div class="form-group">
+                                <label for="descripcion">Descripción</label>
+                                <textarea class="form-control" name="descripcion" id="descripcion" cols="260" rows="10" placeholder="Descripcion">{{ $user->descripcion }}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-ms-12 col-xl-12 justify-content-md-center">
                             <button type="submit" class="btn btn-primary">Modificar</button>
                         </div>

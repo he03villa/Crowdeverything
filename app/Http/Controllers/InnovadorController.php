@@ -48,7 +48,6 @@ class InnovadorController extends Controller
         $tipo_proyecto = Tipo_proyecto::where('nombre',$request->get('tipo_proyecto'))->get();
         $proyecto->foto = $request->file('ImageUpload')->store('public');
         $proyecto->nombre_proyecto = $request->get('nombre_proyecto');
-        $proyecto->total = $request->get('total');
         $proyecto->descripcion = $request->get('descripcion');
         $proyecto->publicacion = 0;
         $proyecto->user_id = $request->get('user_id');
@@ -147,7 +146,6 @@ class InnovadorController extends Controller
         $tipo_proyecto = Tipo_proyecto::where('nombre',$request->get('tipo_proyecto'))->get();
         if($request->file('ImageUpload') != NULL) $proyecto->foto = $request->file('ImageUpload')->store('public');
         $proyecto->nombre_proyecto = $request->get('nombre_proyecto');
-        $proyecto->total = $request->get('total');
         $proyecto->descripcion = $request->get('descripcion');
         $proyecto->publicacion = 0;
         $proyecto->user_id = $request->get('user_id');
@@ -183,7 +181,7 @@ class InnovadorController extends Controller
                 $proyecto_foto[] = 'null';
             }
             else{
-                //$proyecto_foto[] = $fotos[$i]->store('public');
+                $proyecto_foto[] = $fotos[$i]->store('public');
             }
         }
         

@@ -18,7 +18,6 @@ class CreateProyectosTable extends Migration
             $table->string('foto');
             $table->string('nombre_proyecto',20);
             $table->text('descripcion');
-            $table->integer('total');
             $table->integer('publicacion');
             $table->unsignedInteger('tipo_proyecto_id');
             $table->foreign('tipo_proyecto_id')->references('id')->on('tipo_proyectos');

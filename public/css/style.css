@@ -104,6 +104,17 @@ body {
 	*overflow: hidden;
 }
 
+.leer a{
+	color: black;
+	font-size: 20px;
+	text-decoration: none;
+}
+
+.leer a:hover{
+	color: blueviolet;
+	font-size: 25px;
+}
+
 #fondo-blanco {
 	background: rgb(230, 230, 230);
 	background-color: white !important;

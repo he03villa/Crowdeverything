@@ -15,7 +15,7 @@ class CreateRecursosTable extends Migration
     {
         Schema::create('recursos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre_recurso',50);
+            $table->string('nombre_recurso',50)->nullable();
             $table->unsignedInteger('costo');
             $table->unsignedInteger('proyecto_id');
             $table->foreign('proyecto_id')->references('id')->on('proyectos');

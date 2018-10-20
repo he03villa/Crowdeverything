@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+<div class="container">
         <div class="row">
             <div class="col-sm-8">
                 <div class="row" style="background-color: white">
@@ -182,8 +182,6 @@
                                         @endif
                                     @endif
                                 @endfor
-                            @else
-                                <h1>No hay redes social en este proyecto</h1>
                             @endif
                         </div>
                     </div>

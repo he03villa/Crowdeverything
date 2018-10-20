@@ -15,7 +15,7 @@
                 <label for="">Apellido</label> <label for="">{{ $user->apellido }}</label><br>
                 <label for="">Correo</label> <label for="">{{ $user->email }}</label><br>
                 <label for="">Nombre usuario</label> <label for="">{{ $user->nombre_usuario }}</label><br>
-                <label for="">Direccion</label> <label for="">{{ $user->direccion }}</label><br>
+                <label for="">Dirección</label> <label for="">{{ $user->direccion }}</label><br>
                 @can('user.edit')
                     <a href="{{ route('user.edit',$user) }}" class="btn btn-secondary">Modificar</a>
                 @endcan                
@@ -35,7 +35,7 @@
                         @php
                             $i=1
                         @endphp
-                        @if(!empty($user->Proyecto))
+                        @if(count($user->Proyecto) != 0)
                             @foreach($user->Proyecto as $proyecto)
                                 <tr>
                                     <td>{{ $i++ }}</td>
@@ -48,14 +48,14 @@
                             @endforeach
                         @else
                             <tr>
-                                <td colspan="3">Este usuario no a creado ningun proyecto</td>
+                                <td colspan="3">Este usuario no ha creado ningún proyecto</td>
                             </tr> 
                         @endif
                     </tbody>
                 </table>
             </div>
             <div class="col-ms-6 col-xl-6">
-                <p>Esta opcion es para guardar los proyecto en la aplicacion web</p>
+                <p>Esta opción es para guardar los proyectos en la aplicación web</p>
                 <a href="{{ route('inno.index') }}" class="btn">Agregar proyecto <i class="fas fa-plus"></i></a>
             </div>
         </div>

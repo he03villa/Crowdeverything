@@ -14,7 +14,8 @@ class ProyectoController extends Controller
      */
     public function index()
     {
-        //
+        $proyectos = Proyecto::get();
+        return view('welcome',compact('proyectos'));
     }
 
     /**
@@ -46,7 +47,7 @@ class ProyectoController extends Controller
      */
     public function show(Proyecto $proyecto)
     {
-        //
+        return view('proyec.show',compact('proyecto'));
     }
 
     /**

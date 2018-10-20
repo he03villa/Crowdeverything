@@ -22,13 +22,14 @@ function recursos(recur){
     $('#res-recurso').append(
         "<div class='form-group'>"+
             "<label for='re'>Recurso "+ x +"</label>"+
-            "<input type='hidden' name='id[]' value=0>"+
-            "<input type='text' class='form-control' name='nombre[]' id='re' placeholder='Nombre "+ x +"'>"+
-            "<input type='number' class='form-control' name='recurso[]' id='re' placeholder='Recurso "+ x +"'>"+
-            "<select class='form-control' name='tipo[]'>"+
+            "<select class='form-control' name='tipo[]' id='opcion'>"+
                 "<option>Seleccione el tipo de recurso</option>"+
                 contenido+
             "</select>"+
+            "<input type='hidden' name='id[]' value=0>"+
+            "<input type='text' class='form-control' name='nombre[]' id='re' placeholder='Nombre "+ x +"'>"+
+                "<input type='number' class='form-control' name='recurso[]' id='re' placeholder='Recurso "+ x +"'>"+
+            "<div id='op"+x+"'></div>"+
         "</div>"
     );
     x++;
@@ -55,13 +56,37 @@ function rede(rede){
     $('#res-redes').append(
         "<div class='form-group'>"+
             "<label for='re'>Redes social "+ z +"</label>"+
-            "<input type='hidden' name='redes1[]' value=0>"+
-            "<input type='text' class='form-control' id='re' name='url[]' placeholder='Url "+ z     +"'>"+
             "<select class='form-control' name='redes[]'>"+
                 "<option>Seleccione la red social</option>"+
                 contenido+
             "</select>"+
+            "<input type='hidden' name='redes1[]' value=0>"+
+            "<input type='text' class='form-control' id='re' name='url[]' placeholder='Url "+ z     +"'>"+            
         "</div>"
     );
     z++;
+}
+
+function cambioOpciones(x){
+    var cambiar = document.getElementById('opcion');
+    var opcion = cambiar.value;
+    if (opcion == 'Financiero') {
+        $('#op'+x).append(
+            "<input type='number' class='form-control' name='recurso[]' id='re' placeholder='Cantidad "+ x +"'>"
+        );
+    } else {
+        if (opcion == 'Materia prima') {
+            $('#op'+x).append(
+                "<input type='text' class='form-control' name='nombre[]' id='re' placeholder='Nombre "+ x +"'>"+
+                "<input type='number' class='form-control' name='recurso[]' id='re' placeholder='Recurso "+ x +"'>"
+            );
+        } else {
+            if (opcion == 'Talento humano') {
+                $('#op'+x).append(
+                    "<input type='text' class='form-control' name='nombre[]' id='re' placeholder='Nombre "+ x +"'>"+
+                    "<input type='number' class='form-control' name='recurso[]' id='re' placeholder='Talento humano "+ x +"'>"
+                );
+            }
+        }
+    }
 }

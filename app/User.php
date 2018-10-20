@@ -29,6 +29,7 @@ class User extends Authenticatable
         'ciudad_id',
         'tipo_documento_id',
         'foto',
+        'descripcion',
     ];
 
     /**

@@ -85,6 +85,7 @@ class RegisterController extends Controller
         $user->estado = 1;
         $user->ciudad_id = $ciudad->get(0)->id;
         $user->tipo_documento_id = $tipo_documento->get(0)->id;
+        $user->descripcion = $data['descripcion'];
         $user->save();
         $user->roles()->sync([2,3]);
         return $user;
