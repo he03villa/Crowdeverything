@@ -46,19 +46,10 @@
                         <a class="nav-link" href="{{ url('/home') }}"><i class="fas fa-home"></i></a>
                     </li>
                 </ul>
-
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">
                     <!-- Authentication Links -->
                     @guest
-                        <!--<li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            @if (Route::has('register'))
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                            @endif
-                        </li>-->
                         <li class="nav-item">
                             <a href="{{ route('login') }}" class="nav-link"><i class="fas fa-user"></i></a>
                         </li>
@@ -77,9 +68,6 @@
                                     @can('user.perfil')
                                         <a class="dropdown-item" href="{{ route('user.perfil',Auth::user()) }}">Perfil</a>
                                     @endcan
-                                    <!--@can('inno.index')
-                                        <a class="dropdown-item" href="{{ route('inno.index') }}">Innovador</a>
-                                    @endcan-->
                                     @can('eva.index')
                                         <a class="dropdown-item" href="{{ route('eva.index') }}">Evaluador</a>
                                     @endcan
@@ -96,18 +84,6 @@
                                     </form>
                                 </div>
                             </div>
-                            <!--<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                
-                            </a>
-
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href=""
-                                    >
-                                    {{ __('Logout') }}
-                                </a>
-
-                                
-                            </div>-->
                         </li>
                     @endguest
                 </ul>

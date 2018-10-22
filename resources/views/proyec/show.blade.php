@@ -16,7 +16,11 @@
                                     <label for="" style="margin-bottom: 33px">Financiero</label>
                                     <div class="chart" data-percent="0">0%</div>
                                     <div class="let">
-                                        <a href="#fina" data-toggle="modal" class="btn btn-primary"><i class="fas fa-piggy-bank"></i></a>
+                                        @guest
+                                            <a href="#logout" data-toggle="modal" class="btn btn-primary"><i class="fas fa-piggy-bank"></i></a>
+                                        @else
+                                            <a href="#fina" data-toggle="modal" class="btn btn-primary"><i class="fas fa-piggy-bank"></i></a>
+                                        @endguest
                                     </div>
                                 </div>
                             </div>
@@ -25,7 +29,11 @@
                                     <label for="">Materia Prima</label>
                                     <div class="chart" data-percent="0">0%</div>
                                     <div class="let">
-                                        <a href="#material" data-toggle="modal" class="btn btn-primary" id="mate"><i class="fas fa-users"></i></a>
+                                        @guest
+                                            <a href="#logout" data-toggle="modal" class="btn btn-primary" id="mate"><i class="fas fa-users"></i></a>
+                                        @else
+                                            <a href="#material" data-toggle="modal" class="btn btn-primary" id="mate"><i class="fas fa-users"></i></a>
+                                        @endguest
                                     </div>
                                 </div>
                             </div>
@@ -34,7 +42,11 @@
                                     <label for="">Talento Humano</label>
                                     <div class="chart" data-percent="0">0%</div>
                                     <div class="let">
-                                        <a href="#fina" data-toggle="modal" class="btn btn-primary" id="recur"><i class="fas fa-cogs"></i></a>
+                                        @guest
+                                            <a href="#logout" data-toggle="modal" class="btn btn-primary" id="recur"><i class="fas fa-cogs"></i></a>
+                                        @else
+                                            <a href="#fina" data-toggle="modal" class="btn btn-primary" id="recur"><i class="fas fa-cogs"></i></a>
+                                        @endguest
                                     </div>
                                 </div>
                             </div>
@@ -190,5 +202,18 @@
               </div>
             </div>        
         </div>        
+    </div>
+    <div class="modal fade" id="logout" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="model-body">
+                    <label>Para poder donar tienen que a ver iniciado sesión</label>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="ma">Agregar sonacion</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
