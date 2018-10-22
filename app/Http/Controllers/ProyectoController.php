@@ -47,7 +47,34 @@ class ProyectoController extends Controller
      */
     public function show(Proyecto $proyecto)
     {
-        return view('proyec.show',compact('proyecto'));
+        $recurso = $proyecto->Recurso;
+        $financi = array();
+        $matera = array();
+        $talen = array();
+        for ($i=0; $i < count($recurso); $i++) { 
+            if ($recurso[$i]->tipo_recurso_id == 1) {
+                $financi[] = [
+                    'costo' => $recurso[$i]->costo
+                ];
+            } else {
+                if ($recurso[$i]->tipo_recurso_id == 3) {
+                    $talen[] = [
+                        'nombre' => $recurso[$i]->nombre_recurso,
+                        'costo' => $recurso[$i]->costo
+                    ];
+                } else {
+                    if ($recurso[$i]->tipo_recurso_id == 2) {
+                        $matera[] = [
+                            'nombre' => $recurso[$i]->nombre_recurso,
+                            'costo' => $recurso[$i]->costo
+                        ];
+                    }
+                }
+                
+            }
+            
+        }
+        return view('proyec.show',compact('proyecto','financi','matera','talen'));
     }
 
     /**

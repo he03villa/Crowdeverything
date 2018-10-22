@@ -108,20 +108,18 @@
                         @if(count($proyecto->Recurso) > 0)
                             @php
                                 $recursos = $proyecto->Recurso
-                            @endphp                        
-                            @for($i = 0; $i < count($recursos); $i++)
-                                <!--<label for="">{{$recursos[$i]->nombre_recurso."   0/".$recursos[$i]->costo}}</label><br>-->
-                                @if($recursos[$i]->tipo_recurso_id == 1){
-                                    <label for=""><i class="fas fa-piggy-bank"></i> {{$recursos[$i]->nombre_recurso."   0/".$recursos[$i]->costo}}</label><br>
-                                @else
-                                    @if($recursos[$i]->tipo_recurso_id == 2)
-                                        <label for=""><i class="fas fa-users"></i> {{$recursos[$i]->nombre_recurso."   0/".$recursos[$i]->costo}}</label><br>
-                                    @else
-                                        @if($recursos[$i]->tipo_recurso_id == 3)
-                                            <label for=""><i class="fas fa-cogs"></i> {{$recursos[$i]->nombre_recurso."   0/".$recursos[$i]->costo}}</label><br>
-                                        @endif
-                                    @endif
-                                @endif
+                            @endphp
+                            <label><i class="fas fa-piggy-bank"></i> Financiero</label><br>
+                            @for($x=0; $x<count($financi); $x++)
+                                <label for="" style="margin-left:10px"><i class="fa-piggy-bank"></i> {{ $financi[$x]['costo']}}</label><br>
+                            @endfor
+                            <label><i class="fas fa-cogs"></i> Materia prima</label><br>
+                            @for($x=0; $x<count($matera); $x++)
+                                <label for="" style="margin-left:10px"><i class="fas fa-cogs"></i> {{ $matera[$x]['nombre']}}</label><br>
+                            @endfor
+                            <label><i class="fas fa-users"></i> Talento humano</label><br>
+                            @for($x=0; $x<count($talen); $x++)
+                                <label for="" style="margin-left:10px"><i class="fas fa-users"></i> {{ $talen[$x]['nombre']}}</label><br>
                             @endfor
                         @else
                             <h1>No hay recurso en este proyecto</h1>
