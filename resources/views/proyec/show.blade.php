@@ -45,7 +45,7 @@
                                         @guest
                                             <a href="#logout" data-toggle="modal" class="btn btn-primary" id="recur"><i class="fas fa-cogs"></i></a>
                                         @else
-                                            <a href="#fina" data-toggle="modal" class="btn btn-primary" id="recur"><i class="fas fa-cogs"></i></a>
+                                            <a href="#talen" data-toggle="modal" class="btn btn-primary" id="recur"><i class="fas fa-cogs"></i></a>
                                         @endguest
                                     </div>
                                 </div>
@@ -240,16 +240,102 @@
                             <input type="hidden" name="id_user" value="">
                         @endif
                         <input type="hidden" name="id_proyecto" value="{{ $proyecto->id }}">
+                        <input type="hidden" name="id_tipo" value="1">
                         <div class="form-group">
                             <label for="costo">Donacion</label>
                             <input type="number" name="coto" id="costo" class="form-control">
                         </div>                        
                     </div>
                     <div class="modal-footer">
+                        <div class="form-check">
+                            <label for="remember" style="color:black">Anonimo <input type="checkbox" name="remember" id="remember"></label>
+                        </div>
                         <input type="submit" value="Donar">
                         <a href="" data-dismiss="modal" id="cerrar">Cerrar</a>
                     </div>
                 {!! Form::close() !!}
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="material" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                {!! Form::open()!!}
+                    @csrf
+                    <div class="modal-header">
+                        <h5 class="modal-title">Donación de materia prima</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        @if(Auth::user() != NULL)
+                            <input type="hidden" name="id_user" value="{{ Auth::user()->id }}">
+                        @else
+                            <input type="hidden" name="id_user" value="">
+                        @endif
+                        <input type="hidden" name="id_proyecto" value="{{ $proyecto->id }}">
+                        <input type="hidden" name="id_tipo" value="2">
+                        <div class="form-group">
+                            <label for="costo">Materia prima</label>
+                            <select name="nombre" id="nombre" class="form-control">
+                                <option>Seleccione la donación</option>
+                                @for($x=0; $x<count($matera); $x++)
+                                    <option>{{ $matera[$x]['nombre']}}</option>
+                                @endfor
+                            </select><br>
+                            <input type="number" name="coto" id="costo" class="form-control">
+                        </div>                  
+                    </div>
+                    <div class="modal-footer">
+                        <div class="form-check">
+                            <label for="remember" style="color:black">Anonimo <input type="checkbox" name="remember" id="remember"></label>
+                        </div>
+                        <input type="submit" value="Donar">
+                        <a href="" data-dismiss="modal" id="cerrar">Cerrar</a>
+                    </div>
+                {!! Form::close()!!}
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="talen" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                {!! Form::open()!!}
+                    @csrf
+                    <div class="modal-header">
+                        <h5 class="modal-title">Donación talento humano</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        @if(Auth::user() != NULL)
+                            <input type="hidden" name="id_user" value="{{ Auth::user()->id }}">
+                        @else
+                            <input type="hidden" name="id_user" value="">
+                        @endif
+                        <input type="hidden" name="id_proyecto" value="{{ $proyecto->id }}">
+                        <input type="hidden" name="id_tipo" value="3">
+                        <div class="form-group">
+                            <label for="costo">Materia prima</label>
+                            <select name="nombre" id="nombre" class="form-control">
+                                <option>Seleccione la donación</option>
+                                @for($x=0; $x<count($talen); $x++)
+                                    <option>{{ $talen[$x]['nombre']}}</option>
+                                @endfor
+                            </select><br>
+                            <input type="number" name="coto" id="costo" class="form-control">
+                        </div>                  
+                    </div>
+                    <div class="modal-footer">
+                        <div class="form-check">
+                            <label for="remember" style="color:black">Anonimo <input type="checkbox" name="remember" id="remember"></label>
+                        </div>
+                        <input type="submit" value="Donar">
+                        <a href="" data-dismiss="modal" id="cerrar">Cerrar</a>
+                    </div>
+                {!! Form::close()!!}
             </div>
         </div>
     </div>
