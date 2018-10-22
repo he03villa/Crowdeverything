@@ -15,18 +15,27 @@
                                 <div class="box">
                                     <label for="" style="margin-bottom: 33px">Financiero</label>
                                     <div class="chart" data-percent="0">0%</div>
+                                    <div class="let">
+                                        <a href="#fina" data-toggle="modal" class="btn btn-primary"><i class="fas fa-piggy-bank"></i></a>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-sm-4">
                                 <div class="box">
                                     <label for="">Materia Prima</label>
                                     <div class="chart" data-percent="0">0%</div>
+                                    <div class="let">
+                                        <a href="#material" data-toggle="modal" class="btn btn-primary" id="mate"><i class="fas fa-users"></i></a>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-sm-4">
                                 <div class="box">
                                     <label for="">Talento Humano</label>
                                     <div class="chart" data-percent="0">0%</div>
+                                    <div class="let">
+                                        <a href="#fina" data-toggle="modal" class="btn btn-primary" id="recur"><i class="fas fa-cogs"></i></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
