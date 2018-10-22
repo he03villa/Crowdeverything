@@ -222,4 +222,35 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="fina" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                {!! Form::open() !!}
+                    @csrf
+                    <div class="modal-header">
+                        <h5 class="modal-title">Donación financiero</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        @if(Auth::user() != NULL)
+                            <input type="hidden" name="id_user" value="{{ Auth::user()->id }}">
+                        @else
+                            <input type="hidden" name="id_user" value="">
+                        @endif
+                        <input type="hidden" name="id_proyecto" value="{{ $proyecto->id }}">
+                        <div class="form-group">
+                            <label for="costo">Donacion</label>
+                            <input type="number" name="coto" id="costo" class="form-control">
+                        </div>                        
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit" value="Donar">
+                        <a href="" data-dismiss="modal" id="cerrar">Cerrar</a>
+                    </div>
+                {!! Form::close() !!}
+            </div>
+        </div>
+    </div>
 @endsection

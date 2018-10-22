@@ -146,6 +146,23 @@ body {
 	color: #F4F4F4;
 }
 
+.modal-footer input[type="submit"]{
+	border: none;
+	outline: none;
+	width: 120px;
+	height:30px;
+	background: #ffc107;
+	color: white;
+	font-size: 18px;
+	border-radius: 20px;
+}
+
+.modal-footer input[type="submit"]:hover{
+	cursor: pointer;
+	background: #C4D661;
+	color: #F4F4F4;
+}
+
 #fondo-blanco {
 	background: rgb(230, 230, 230);
 	background-color: white !important;
