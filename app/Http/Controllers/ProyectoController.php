@@ -36,7 +36,11 @@ class ProyectoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->get('remember')) {
+            return $request;
+        } else {
+            return 'No a seleccionado';
+        }
     }
 
     /**

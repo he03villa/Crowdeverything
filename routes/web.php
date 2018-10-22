@@ -52,8 +52,8 @@ Route::middleware(['auth'])->group(function(){
         ->middleware('permission:inno.store');
 
     //Patrocibador
-    Route::post('/pat/store','PatrocinadorController@store')->name('pat.storeS')
-        ->middleware('permission:inno.store');
+    Route::post('/pat/store','ProyectoController@store')->name('pat.store')
+        ->middleware('permission:pat.store');
 
     //Evaluador
     Route::get('/eva/index','EvaluadorController@index')->name('eva.index')

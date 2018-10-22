@@ -225,7 +225,7 @@
     <div class="modal fade" id="fina" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
-                {!! Form::open() !!}
+                {!! Form::open(['route' => 'pat.store']) !!}
                     @csrf
                     <div class="modal-header">
                         <h5 class="modal-title">Donación financiero</h5>
@@ -260,7 +260,7 @@
     <div class="modal fade" id="material" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
-                {!! Form::open()!!}
+                {!! Form::open(['route' => 'pat.store'])!!}
                     @csrf
                     <div class="modal-header">
                         <h5 class="modal-title">Donación de materia prima</h5>
@@ -301,7 +301,7 @@
     <div class="modal fade" id="talen" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
-                {!! Form::open()!!}
+                {!! Form::open(['route' => 'pat.store'])!!}
                     @csrf
                     <div class="modal-header">
                         <h5 class="modal-title">Donación talento humano</h5>
