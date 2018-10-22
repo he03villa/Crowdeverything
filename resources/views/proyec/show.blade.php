@@ -213,11 +213,11 @@
                     </button>
                 </div>
                 <div class="model-body">
-                    <label>Para poder donar tienen que a ver iniciado sesión</label>
+                    <label class="title-body">Para poder donar tienen que haber iniciado sesión</label>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="ma">Agregar sonacion</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <a href="{{ route('login') }}">Iniciar sesión</a>
+                    <a href="" data-dismiss="modal" id="cerrar">Cerrar</a>
                 </div>
             </div>
         </div>
