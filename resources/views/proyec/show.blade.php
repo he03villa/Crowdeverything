@@ -6,8 +6,7 @@
             <div class="col-sm-8">
                 <div class="row" style="background-color: white">
                     <div class="col-ms-6 col-xl-4">
-                        <img src="{{ Storage::url($proyecto->foto) }}" id="perfil" title="perfil" class="img-ms" style="margin-top:10px">
-                        <h1>{{ $proyecto->nombre_proyecto }}</h1>
+                        <img src="{{ Storage::url($proyecto->foto) }}" id="perfil" title="perfil" class="img-ms" style="margin-top:30px">
                     </div>
                     <div class="col-ms-6 col-xl-8">
                         <div class="row">
@@ -51,6 +50,11 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="row" style="background-color: white">
+                    <div class="col-ms-12" style="margin-top:6px">
+                        <h1>{{ $proyecto->nombre_proyecto }}</h1>
                     </div>
                 </div>
                 <div class="row" style="background-color: white">
@@ -132,15 +136,15 @@
                             @endphp
                             <label><i class="fas fa-piggy-bank"></i> Financiero</label><br>
                             @for($x=0; $x<count($financi); $x++)
-                                <label for="" style="margin-left:10px"><i class="fa-piggy-bank"></i> {{ $financi[$x]['costo']}}</label><br>
+                                <label for="" style="margin-left:10px"><i class="fas fa-piggy-bank"></i> {{ $financi[$x]['costo']}}</label><br>
                             @endfor
                             <label><i class="fas fa-cogs"></i> Materia prima</label><br>
                             @for($x=0; $x<count($matera); $x++)
-                                <label for="" style="margin-left:10px"><i class="fas fa-cogs"></i> {{ $matera[$x]['nombre']}}</label><br>
+                                <label for="" style="margin-left:10px"><i class="fas fa-cogs"></i> {{ $matera[$x]['nombre']." ".$matera[$x]['costo']}}</label><br>
                             @endfor
                             <label><i class="fas fa-users"></i> Talento humano</label><br>
                             @for($x=0; $x<count($talen); $x++)
-                                <label for="" style="margin-left:10px"><i class="fas fa-users"></i> {{ $talen[$x]['nombre']}}</label><br>
+                                <label for="" style="margin-left:10px"><i class="fas fa-users"></i> {{ $talen[$x]['nombre']." ".$talen[$x]['costo']}}</label><br>
                             @endfor
                         @else
                             <h1>No hay recurso en este proyecto</h1>
@@ -243,7 +247,7 @@
                         <input type="hidden" name="id_tipo" value="1">
                         <div class="form-group">
                             <label for="costo">Donacion</label>
-                            <input type="number" name="coto" id="costo" class="form-control">
+                            <input type="number" name="coto" id="costo" class="form-control" min="1" pattern="^[0-9]+">
                         </div>                        
                     </div>
                     <div class="modal-footer">
@@ -284,7 +288,7 @@
                                     <option>{{ $matera[$x]['nombre']}}</option>
                                 @endfor
                             </select><br>
-                            <input type="number" name="coto" id="costo" class="form-control">
+                            <input type="number" name="coto" id="costo" class="form-control" min="1" pattern="^[0-9]+">
                         </div>                  
                     </div>
                     <div class="modal-footer">
@@ -325,7 +329,7 @@
                                     <option>{{ $talen[$x]['nombre']}}</option>
                                 @endfor
                             </select><br>
-                            <input type="number" name="coto" id="costo" class="form-control">
+                            <input type="number" name="coto" id="costo" class="form-control" min="1" pattern="^[0-9]+">
                         </div>                  
                     </div>
                     <div class="modal-footer">

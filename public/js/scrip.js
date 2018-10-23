@@ -22,13 +22,11 @@ function recursos(recur){
     $('#res-recurso').append(
         "<div class='form-group'>"+
             "<label for='re'>Recurso "+ x +"</label>"+
-            "<select class='form-control' name='tipo[]' id='opcion'>"+
+            "<select class='form-control' name='tipo[]' id='opcion' onchange='cambioOpciones("+x+")'>"+
                 "<option>Seleccione el tipo de recurso</option>"+
                 contenido+
             "</select>"+
             "<input type='hidden' name='id[]' value=0>"+
-            "<input type='text' class='form-control' name='nombre[]' id='re' placeholder='Nombre "+ x +"'>"+
-                "<input type='number' class='form-control' name='recurso[]' id='re' placeholder='Recurso "+ x +"'>"+
             "<div id='op"+x+"'></div>"+
         "</div>"
     );
@@ -71,17 +69,20 @@ function cambioOpciones(x){
     var cambiar = document.getElementById('opcion');
     var opcion = cambiar.value;
     if (opcion == 'Financiero') {
+        $('#op'+x).empty();
         $('#op'+x).append(
             "<input type='number' class='form-control' name='recurso[]' id='re' placeholder='Cantidad "+ x +"'>"
         );
     } else {
         if (opcion == 'Materia prima') {
+            $('#op'+x).empty();
             $('#op'+x).append(
                 "<input type='text' class='form-control' name='nombre[]' id='re' placeholder='Nombre "+ x +"'>"+
-                "<input type='number' class='form-control' name='recurso[]' id='re' placeholder='Recurso "+ x +"'>"
+                "<input type='number' class='form-control' name='recurso[]' id='re' placeholder='Cantidad "+ x +"'>"
             );
         } else {
             if (opcion == 'Talento humano') {
+                $('#op'+x).empty();
                 $('#op'+x).append(
                     "<input type='text' class='form-control' name='nombre[]' id='re' placeholder='Nombre "+ x +"'>"+
                     "<input type='number' class='form-control' name='recurso[]' id='re' placeholder='Talento humano "+ x +"'>"
