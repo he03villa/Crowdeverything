@@ -17,8 +17,8 @@ class CreateDonacionsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('proyecto_id');
             $table->foreign('proyecto_id')->references('id')->on('proyectos');
-            $table->unsignedInteger('tipo_recurso_id');
-            $table->foreign('tipo_recurso_id')->references('id')->on('tipo_recursos');
+            $table->unsignedInteger('recurso_id');
+            $table->foreign('recurso_id')->references('id')->on('tipo_recursos');
             $table->unsignedInteger('usuario_id');
             $table->foreign('usuario_id')->references('id')->on('users');
             $table->integer('costo');
