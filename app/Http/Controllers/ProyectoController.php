@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Proyecto;
+use App\Recurso;
+use App\Donacion;
 use Illuminate\Http\Request;
 
 class ProyectoController extends Controller
@@ -36,10 +38,44 @@ class ProyectoController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->get('remember')) {
-            return $request;
-        } else {
-            return 'No a seleccionado';
+        if ($request->ajax()) {
+
+            if ($request->get('id_tipo') == NULL || $request->get('id_tipo') == 'Seleccione la donación') {
+                return response(1);
+            } else {
+                if($request->get('id_tipo') == 1 || $request->get('id_tipo') == 2 || $request->get('id_tipo') == 3 || $request->get('id_tipo') == 4 || $request->get('id_tipo') == 5 || $request->get('id_tipo') == 6 || $request->get('id_tipo') == 7 || $request->get('id_tipo') == 8 || $request->get('id_tipo') == 9){
+                    $recur = Recurso::where('tipo_recurso_id',$request->get('id_tipo'))
+                                    ->Where('proyecto_id',$request->get('id_proyecto'))
+                                    ->get();
+                } else {
+                    $recur = Recurso::where('nombre_recurso',$request->get('id_tipo'))
+                                    ->Where('proyecto_id',$request->get('id_proyecto'))
+                                    ->get();
+                }
+                if ($request->get('remember')) {
+                    $anonimo = 1;
+                } else {
+                    $anonimo = 0;
+                }
+
+                if ($request->get('costo') == NULL) {
+                    return response(2);
+                } else {
+                    if ($request->get('costo') > $recur->get(0)->costo) {
+                        return response(3);
+                    } else {
+                        $donacion = new Donacion();
+                        $donacion->proyecto_id = $request->get('id_proyecto');
+                        $donacion->recurso_id = $recur->get(0)->id;
+                        $donacion->usuario_id = $request->get('id_user');
+                        $donacion->costo = $request->get('costo');
+                        $donacion->anonimo = $anonimo;
+                        $donacion->save();
+                        return response(4);
+                    }
+                }
+                
+            }
         }
     }
 

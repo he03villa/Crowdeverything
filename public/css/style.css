@@ -146,7 +146,7 @@ body {
 	color: #F4F4F4;
 }
 
-.modal-footer input[type="submit"]{
+.modal-footer input[type="button"]{
 	border: none;
 	outline: none;
 	width: 120px;
@@ -157,7 +157,7 @@ body {
 	border-radius: 20px;
 }
 
-.modal-footer input[type="submit"]:hover{
+.modal-footer input[type="button"]:hover{
 	cursor: pointer;
 	background: #C4D661;
 	color: #F4F4F4;

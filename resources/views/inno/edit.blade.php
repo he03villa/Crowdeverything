@@ -17,10 +17,6 @@
                                 <label for="nombre_proyecto">Titulo del proyecto</label>
                                 <input type="text" class="form-control" name="nombre_proyecto" id="nombre_proyecto" placeholder="Ingrese el titulo del proyecto" value="{{ $proyecto->nombre_proyecto }}">
                             </div>
-                            <div class="form-group">
-                                <label for="total">Costo total del proyecto</label>
-                                <input type="number" class="form-control" name="total" id="total" placeholder="Total" value="{{ $proyecto->total }}">
-                            </div>
                             <div class="form-group ">
                                 <label for="tipo_proyecto">Tipo del proyecto</label>
                                 <select name="tipo_proyecto" id="tipo_proyecto" class="form-control" value="">
@@ -40,7 +36,7 @@
                     <div class="row">
                         <div class="col-ms-12 col-xl-12">
                             <div class="form-group">
-                                <label for="descripcion">Descripcion</label>
+                                <label for="descripcion">Descripción</label>
                                 <textarea class="form-control" name="descripcion" id="descripcion" cols="260" rows="10" placeholder="Descripcion">{{$proyecto->descripcion}}</textarea>
                             </div>
                         </div>
@@ -50,10 +46,7 @@
                             <label for="res-recurso">Recurso</label>
                             @foreach($proyecto->Recurso as $recurso)
                                 <div class="form-group">
-                                    <label for='re'>Recurso </label>
-                                    <input type="hidden" name="id[]" value="{{ $recurso->id }}">
-                                    <input type='text' class='form-control' name='nombre[]' id='re' placeholder='Nombre' value="{{ $recurso->nombre_recurso }}">
-                                    <input type='number' class='form-control' name='recurso[]' id='re' placeholder='Recurso' value="{{ $recurso->costo }}">
+                                    <label for='re'>Recurso </label>                                    
                                     <select class='form-control' name='tipo[]'>
                                         <option>{{ $recurso->Tipo_recurso->nombre }}</option>
                                         <option>Seleccione el tipo de recurso</option>
@@ -61,6 +54,9 @@
                                             <option>{{ $tipo_recurso->nombre }}</option>
                                         @endforeach
                                     </select>
+                                    <input type="hidden" name="id[]" value="{{ $recurso->id }}">
+                                    <input type='text' class='form-control' name='nombre[]' id='re' placeholder='Nombre' value="{{ $recurso->nombre_recurso }}">
+                                    <input type='number' class='form-control' name='recurso[]' id='re' placeholder='Recurso' value="{{ $recurso->costo }}">
                                 </div>
                             @endforeach
                             <div id="res-recurso"></div>
@@ -85,8 +81,6 @@
                                 @foreach($proyecto->Redes as $redes1)
                                     <div class='form-group'>
                                         <label for='re'>Redes social </label>
-                                        <input type="hidden" name="redes1[]" value="{{ $redes1->id }}">
-                                        <input type='text' class='form-control' id='re' name='url[]' placeholder='Url' value="{{ $redes1->url }}">
                                         <select class='form-control' name='redes[]'>
                                             @if($redes1->redes_socials_id == 1)
                                                 <option>Facebook</option>
@@ -104,6 +98,8 @@
                                                 <option>{{ $rede->nombre }}</option>
                                             @endforeach
                                         </select>
+                                        <input type="hidden" name="redes1[]" value="{{ $redes1->id }}">
+                                        <input type='text' class='form-control' id='re' name='url[]' placeholder='Url' value="{{ $redes1->url }}">
                                     </div>
                                 @endforeach
                             <div id="res-redes"></div>

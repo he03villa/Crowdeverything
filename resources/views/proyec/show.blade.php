@@ -29,9 +29,9 @@
                                     <div class="chart" data-percent="0">0%</div>
                                     <div class="let">
                                         @guest
-                                            <a href="#logout" data-toggle="modal" class="btn btn-primary" id="mate"><i class="fas fa-users"></i></a>
+                                            <a href="#logout" data-toggle="modal" class="btn btn-primary" id="mate"><i class="fas fa-cogs"></i></a>
                                         @else
-                                            <a href="#material" data-toggle="modal" class="btn btn-primary" id="mate"><i class="fas fa-users"></i></a>
+                                            <a href="#material" data-toggle="modal" class="btn btn-primary" id="mate"><i class="fas fa-cogs"></i></i></a>
                                         @endguest
                                     </div>
                                 </div>
@@ -42,9 +42,9 @@
                                     <div class="chart" data-percent="0">0%</div>
                                     <div class="let">
                                         @guest
-                                            <a href="#logout" data-toggle="modal" class="btn btn-primary" id="recur"><i class="fas fa-cogs"></i></a>
+                                            <a href="#logout" data-toggle="modal" class="btn btn-primary" id="recur"><i class="fas fa-users"></i></a>
                                         @else
-                                            <a href="#talen" data-toggle="modal" class="btn btn-primary" id="recur"><i class="fas fa-cogs"></i></a>
+                                            <a href="#talen" data-toggle="modal" class="btn btn-primary" id="recur"><i class="fas fa-users"></i></a>
                                         @endguest
                                     </div>
                                 </div>
@@ -229,7 +229,7 @@
     <div class="modal fade" id="fina" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
-                {!! Form::open(['route' => 'pat.store']) !!}
+                {!! Form::open(['route' => 'pat.store', 'id'=>'financiero']) !!}
                     @csrf
                     <div class="modal-header">
                         <h5 class="modal-title">Donación financiero</h5>
@@ -247,14 +247,14 @@
                         <input type="hidden" name="id_tipo" value="1">
                         <div class="form-group">
                             <label for="costo">Donacion</label>
-                            <input type="number" name="coto" id="costo" class="form-control" min="1" pattern="^[0-9]+">
+                            <input type="number" name="costo" id="costo" class="form-control" min="1" pattern="^[0-9]+">
                         </div>                        
                     </div>
                     <div class="modal-footer">
                         <div class="form-check">
                             <label for="remember" style="color:black">Anonimo <input type="checkbox" name="remember" id="remember"></label>
                         </div>
-                        <input type="submit" value="Donar">
+                        <input type="button" value="Donar" id="aceptar_fin">
                         <a href="" data-dismiss="modal" id="cerrar">Cerrar</a>
                     </div>
                 {!! Form::close() !!}
@@ -264,7 +264,7 @@
     <div class="modal fade" id="material" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
-                {!! Form::open(['route' => 'pat.store'])!!}
+                {!! Form::open(['route' => 'pat.store', 'id'=>'materia'])!!}
                     @csrf
                     <div class="modal-header">
                         <h5 class="modal-title">Donación de materia prima</h5>
@@ -279,23 +279,22 @@
                             <input type="hidden" name="id_user" value="">
                         @endif
                         <input type="hidden" name="id_proyecto" value="{{ $proyecto->id }}">
-                        <input type="hidden" name="id_tipo" value="2">
                         <div class="form-group">
                             <label for="costo">Materia prima</label>
-                            <select name="nombre" id="nombre" class="form-control">
+                            <select name="id_tipo" id="nombre" class="form-control">
                                 <option>Seleccione la donación</option>
                                 @for($x=0; $x<count($matera); $x++)
                                     <option>{{ $matera[$x]['nombre']}}</option>
                                 @endfor
                             </select><br>
-                            <input type="number" name="coto" id="costo" class="form-control" min="1" pattern="^[0-9]+">
+                            <input type="number" name="costo" id="costo" class="form-control" min="1" pattern="^[0-9]+">
                         </div>                  
                     </div>
                     <div class="modal-footer">
                         <div class="form-check">
                             <label for="remember" style="color:black">Anonimo <input type="checkbox" name="remember" id="remember"></label>
                         </div>
-                        <input type="submit" value="Donar">
+                        <input type="button" value="Donar" id="aceptar_ma">
                         <a href="" data-dismiss="modal" id="cerrar">Cerrar</a>
                     </div>
                 {!! Form::close()!!}
@@ -305,7 +304,7 @@
     <div class="modal fade" id="talen" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
-                {!! Form::open(['route' => 'pat.store'])!!}
+                {!! Form::open(['route' => 'pat.store', 'id'=>'talento'])!!}
                     @csrf
                     <div class="modal-header">
                         <h5 class="modal-title">Donación talento humano</h5>
@@ -320,27 +319,27 @@
                             <input type="hidden" name="id_user" value="">
                         @endif
                         <input type="hidden" name="id_proyecto" value="{{ $proyecto->id }}">
-                        <input type="hidden" name="id_tipo" value="3">
                         <div class="form-group">
                             <label for="costo">Materia prima</label>
-                            <select name="nombre" id="nombre" class="form-control">
+                            <select name="id_tipo" id="nombre" class="form-control">
                                 <option>Seleccione la donación</option>
                                 @for($x=0; $x<count($talen); $x++)
                                     <option>{{ $talen[$x]['nombre']}}</option>
                                 @endfor
                             </select><br>
-                            <input type="number" name="coto" id="costo" class="form-control" min="1" pattern="^[0-9]+">
+                            <input type="number" name="costo" id="costo" class="form-control" min="1" pattern="^[0-9]+">
                         </div>                  
                     </div>
                     <div class="modal-footer">
                         <div class="form-check">
                             <label for="remember" style="color:black">Anonimo <input type="checkbox" name="remember" id="remember"></label>
                         </div>
-                        <input type="submit" value="Donar">
+                        <input type="button" value="Donar" id="aceptar_tale">
                         <a href="" data-dismiss="modal" id="cerrar">Cerrar</a>
                     </div>
                 {!! Form::close()!!}
             </div>
         </div>
     </div>
+    {{ Html::script('js/ajax.js') }}
 @endsection
