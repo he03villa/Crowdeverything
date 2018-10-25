@@ -51,6 +51,9 @@ Route::middleware(['auth'])->group(function(){
     Route::post('/inno/store','InnovadorController@store')->name('inno.store')
         ->middleware('permission:inno.store');
 
+    Route::post('/recur/store','RecursoController@store')->name('recur.store')
+        ->middleware('permission:recur.store');
+
     //Patrocibador
     Route::post('/pat/store','ProyectoController@store')->name('pat.store')
         ->middleware('permission:pat.store');

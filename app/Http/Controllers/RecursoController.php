@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Recurso;
+use App\Tipo_recurso;
 use Illuminate\Http\Request;
 
 class RecursoController extends Controller
@@ -35,7 +36,46 @@ class RecursoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->ajax()) {
+            if ($request->get('tipo') == NULL || $request->get('tipo') == 'Seleccione el tipo de recurso') {
+                return response(1);
+            } else {
+                if ($request->get('tipo') == 'Financiero') {
+                    $recur = Recurso::where('tipo_recurso_id',1)
+                                    ->Where('proyecto_id',$request->get('id_proyecto'))
+                                    ->get();
+                    if ($request->get('recurso') == NULL) {
+                        return response(2);
+                    } else {
+                        $recurso = new Recurso();
+                        $recur->get(0)->costo = $request->get('recurso') + $recur->get(0)->costo;
+                        $recurso = $recur->get(0);
+                        $recurso->save();
+                        return response(6);
+                    }
+                } else {
+                    if ($request->get('nombre') == NULL) {
+                        return response(3);
+                    } else {
+                        if ($request->get('recurso') == NULL) {
+                            return response(4);
+                        } else {
+                            $tipo_recurso = Tipo_recurso::where('nombre',$request->get('tipo'))->get();
+                            Recurso::create([
+                                'nombre_recurso' => $request->get('nombre'),
+                                'costo' => $request->get('recurso'),
+                                'tipo_recurso_id' => $tipo_recurso->get(0)->id,
+                                'proyecto_id' => $request->get('id_proyecto'),
+                            ]);
+                            return response(5);
+                        }   
+                    }
+                }
+                
+            }
+            
+        }
+        
     }
 
     /**

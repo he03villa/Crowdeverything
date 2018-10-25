@@ -73,10 +73,10 @@
                 <div class="row" style="background-color: white;margin-top: 10px">
                     <div class="col-sm-12" style="margin-left: 60px">
                         @if($proyecto->publicacion == 0)
-                            <h1 style="color:red">No se a publicado su proyecto</h1>
+                            <h1 style="color:red">No se ha publicado su proyecto</h1>
                         @else
                             @if($proyecto->publicacion == 1)
-                                <h1 style="color:gren">No se a publicado su proyecto</h1>
+                                <h1 style="color:gren">EL proyecto se publico</h1>
                             @endif
                         @endif
                     </div>                    
@@ -93,7 +93,11 @@
                         $user = $proyecto->User
                     @endphp
                     <div class="col-sm-6">
-                        <img src="{{ Storage::url($user->foto) }}" class="img-lg" alt="imagen de perfil" style="margin-left: 20px">
+                        @if($user->foto)
+                            <img src="{{ Storage::url($user->foto) }}" class="img-lg" alt="imagen de perfil" style="margin-left: 20px">
+                        @else
+                            {{ Html::image('img/perfil.jpg','Imagen no encontrada', array('id' => 'perfil', 'title' => 'perfil', 'class' => 'img-lg')) }}
+                        @endif
                     </div>
                     <div class="col-sm-6">
                         <label for="">{{ $user->nombre." ".$user->apellido }}</label>
@@ -135,7 +139,9 @@
                 </div>
                 <div class="row" style="background-color: white; margin-left: 5px">
                     <div class="recuro_mas">
-                        <a href="#rec" data-toggle="modal">Agregar recurso</a>
+                        @can('recur.store')
+                            <a href="#rec" data-toggle="modal">Agregar recurso</a>
+                        @endcan
                     </div>
                 </div>
               <div class="row" style="background-color: white; margin-left: 5px; margin-top: 20px">
@@ -203,12 +209,13 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                {!! Form::open(['id'=>'recur'])!!}
+                {!! Form::open(['route' => 'recur.store', 'id' => 'recur']) !!}
                     @csrf
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="res-recurso">Recurso</label>
-                            <select class='form-control' name='tipo[]' id='opcion' onchange="cambioOpcion()">
+                            <input type="hidden" name="id_proyecto" value="{{ $proyecto->id }}">
+                            <select class='form-control' name='tipo' id='opcion' onchange="cambioOpcion()">
                                 <option>Seleccione el tipo de recurso</option>
                                 @for($i=0; $i<count($tipo_recursos); $i++)
                                     <option>{{$tipo_recursos[$i]["nombre"]}}</option>
@@ -218,11 +225,12 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <input type="button" value="Agregar" id="aceptar_fin">
+                        <input type="button" value="Agregar" id="aceptar_recur">
                         <a href="" data-dismiss="modal" id="cerrar">Cerrar</a>
                     </div>
-                {!! Form::close()!!}
+                {!! Form::close() !!}
             </div>
         </div>
     </div>
+    {{ Html::script('js/ajax.js') }}
 @endsection

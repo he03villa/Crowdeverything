@@ -77,4 +77,41 @@ $(document).ready(function(){
             }
         });
     });
+
+    $('#aceptar_recur').click(function(){
+        var data = $('#recur').serialize();
+        var url = $('#recur').attr('action');
+        var post = $('#recur').attr('method');
+        $.ajax({
+            type: post,
+            url: url,
+            data: data,
+            dataTy: 'json',
+            success: function(res){
+                if (res == 1) {
+                    swal("Error", "Escoja el tipo de recurso", "error");
+                } else {
+                    if (res == 2) {
+                        swal("Error", "Ingrese el costo", "error");
+                    } else {
+                        if (res == 3) {
+                            swal("Error", "Ingrese el nombre del recurso", "error");
+                        } else {
+                            if (res == 4) {
+                                swal("Error", "Ingrese el costo", "error");
+                            } else {
+                                if (res == 5) {
+                                    swal("Good job!", "El recurso se ingreso exitosamente", "success");
+                                } else {
+                                    if (res == 6) {
+                                        swal("Good job!", "El recurso se ingreso exitosamente", "success");
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    });
 });

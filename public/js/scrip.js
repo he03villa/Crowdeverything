@@ -102,21 +102,21 @@ function cambioOpcion(){
     if (opcion == 'Financiero') {
         $('#op').empty();
         $('#op').append(
-            "<input type='number' class='form-control' name='recurso[]' id='re' placeholder='Cantidad "+ x +"'>"
+            "<input type='number' class='form-control' name='recurso' id='re' placeholder='Cantidad "+ x +"'>"
         );
     } else {
         if (opcion == 'Materia prima') {
             $('#op').empty();
             $('#op').append(
-                "<input type='text' class='form-control' name='nombre[]' id='re' placeholder='Nombre "+ x +"'>"+
-                "<input type='number' class='form-control' name='recurso[]' id='re' placeholder='Cantidad "+ x +"'>"
+                "<input type='text' class='form-control' name='nombre' id='re' placeholder='Nombre "+ x +"'>"+
+                "<input type='number' class='form-control' name='recurso' id='re' placeholder='Cantidad "+ x +"'>"
             );
         } else {
             if (opcion == 'Talento humano') {
                 $('#op').empty();
                 $('#op').append(
-                    "<input type='text' class='form-control' name='nombre[]' id='re' placeholder='Nombre "+ x +"'>"+
-                    "<input type='number' class='form-control' name='recurso[]' id='re' placeholder='Talento humano "+ x +"'>"
+                    "<input type='text' class='form-control' name='nombre' id='re' placeholder='Nombre "+ x +"'>"+
+                    "<input type='number' class='form-control' name='recurso' id='re' placeholder='Talento humano "+ x +"'>"
                 );
             } else {
                 if (opcion == 'Seleccione el tipo de recurso') {
