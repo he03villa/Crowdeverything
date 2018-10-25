@@ -180,6 +180,30 @@ body {
 	*overflow: hidden;
 }
 
+.row .recuro_mas{
+	margin-left: 95px;
+	margin-bottom: 10px;
+	width: 140px;
+	height:30px;
+	background: #ffc107;
+	border-radius: 20px;
+	text-align: center;
+}
+
+.row .recuro_mas a{
+	text-decoration: none;
+	border: none;
+	outline: none;
+	color: white;
+	font-size: 18px;
+}
+
+.row .recuro_mas:hover{
+	cursor: pointer;
+	background: #C4D661;
+	color: #F4F4F4;
+}
+
 #fondo-blanco {
 	background: rgb(230, 230, 230);
 	background-color: white !important;

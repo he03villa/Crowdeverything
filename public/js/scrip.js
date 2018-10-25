@@ -87,6 +87,10 @@ function cambioOpciones(x){
                     "<input type='text' class='form-control' name='nombre[]' id='re' placeholder='Nombre "+ x +"'>"+
                     "<input type='number' class='form-control' name='recurso[]' id='re' placeholder='Talento humano "+ x +"'>"
                 );
+            } else {
+                if (opcion == 'Seleccione el tipo de recurso') {
+                    $('#op'+x).empty();
+                }
             }
         }
     }

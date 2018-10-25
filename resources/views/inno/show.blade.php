@@ -118,11 +118,11 @@
                             @endphp
                             <label><i class="fas fa-piggy-bank"></i> Financiero</label><br>
                             @for($x=0; $x<count($financi); $x++)
-                                <label for="" style="margin-left:10px"><i class="fa-piggy-bank"></i> {{ $financi[$x]['costo']}}</label><br>
+                                <label for="" style="margin-left:10px"><i class="fas fa-piggy-bank"></i> {{ $financi[$x]['costo']}}</label><br>
                             @endfor
                             <label><i class="fas fa-cogs"></i> Materia prima</label><br>
                             @for($x=0; $x<count($matera); $x++)
-                                <label for="" style="margin-left:10px"><i class="fas fa-cogs"></i> {{ $matera[$x]['nombre']}}</label><br>
+                                <label for="" style="margin-left:10px"><i class="fas fa-cogs"></i> {{ $matera[$x]['nombre']." ".$matera[$x]['costo'] }}</label><br>
                             @endfor
                             <label><i class="fas fa-users"></i> Talento humano</label><br>
                             @for($x=0; $x<count($talen); $x++)
@@ -132,7 +132,12 @@
                             <h1>No hay recurso en este proyecto</h1>
                         @endif
                     </div>
-              </div>
+                </div>
+                <div class="row" style="background-color: white; margin-left: 5px">
+                    <div class="recuro_mas">
+                        <a href="#rec" data-toggle="modal">Agregar recurso</a>
+                    </div>
+                </div>
               <div class="row" style="background-color: white; margin-left: 5px; margin-top: 20px">
                     <div class="col-ms-12">
                         <label for="" class="h2">Donadores</label>
@@ -188,5 +193,29 @@
               </div>
             </div>        
         </div>        
+    </div>
+    <div class="modal fade" id="rec" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Donación financiero</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                {!! Form::open(['id'=>'recur'])!!}
+                    @csrf
+                    <div class="modal-body">
+                        <label for="res-recurso">Recurso</label>
+                        <div id="res-recurso"></div>
+                        <button id="recurso" type="button" class="btn btn-secondary" onclick="recursos({{ $tipo_recursos }})">Agregar <i class="fas fa-plus"></i> recurso</button>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" value="Donar" id="aceptar_fin">
+                        <a href="" data-dismiss="modal" id="cerrar">Cerrar</a>
+                    </div>
+                {!! Form::close()!!}
+            </div>
+        </div>
     </div>
 @endsection

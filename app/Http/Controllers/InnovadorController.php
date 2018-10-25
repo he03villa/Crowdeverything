@@ -118,6 +118,7 @@ class InnovadorController extends Controller
     public function show(Proyecto $proyecto)
     {
         $recurso = $proyecto->Recurso;
+        $tipo_recursos = Tipo_recurso::get();
         $financi = array();
         $matera = array();
         $talen = array();
@@ -144,7 +145,7 @@ class InnovadorController extends Controller
             }
             
         }
-        return view('inno.show',compact('proyecto','financi','matera','talen'));
+        return view('inno.show',compact('proyecto','financi','matera','talen','tipo_recursos'));
     }
 
     /**
