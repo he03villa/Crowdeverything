@@ -126,7 +126,7 @@
                             @endfor
                             <label><i class="fas fa-users"></i> Talento humano</label><br>
                             @for($x=0; $x<count($talen); $x++)
-                                <label for="" style="margin-left:10px"><i class="fas fa-users"></i> {{ $talen[$x]['nombre']}}</label><br>
+                                <label for="" style="margin-left:10px"><i class="fas fa-users"></i> {{ $talen[$x]['nombre']." ".$talen[$x]['costo'] }}</label><br>
                             @endfor
                         @else
                             <h1>No hay recurso en este proyecto</h1>
@@ -206,12 +206,19 @@
                 {!! Form::open(['id'=>'recur'])!!}
                     @csrf
                     <div class="modal-body">
-                        <label for="res-recurso">Recurso</label>
-                        <div id="res-recurso"></div>
-                        <button id="recurso" type="button" class="btn btn-secondary" onclick="recursos({{ $tipo_recursos }})">Agregar <i class="fas fa-plus"></i> recurso</button>
+                        <div class="form-group">
+                            <label for="res-recurso">Recurso</label>
+                            <select class='form-control' name='tipo[]' id='opcion' onchange="cambioOpcion()">
+                                <option>Seleccione el tipo de recurso</option>
+                                @for($i=0; $i<count($tipo_recursos); $i++)
+                                    <option>{{$tipo_recursos[$i]["nombre"]}}</option>
+                                @endfor
+                            </select>
+                            <div id="op"></div>
+                        </div>
                     </div>
                     <div class="modal-footer">
-                        <input type="button" value="Donar" id="aceptar_fin">
+                        <input type="button" value="Agregar" id="aceptar_fin">
                         <a href="" data-dismiss="modal" id="cerrar">Cerrar</a>
                     </div>
                 {!! Form::close()!!}
