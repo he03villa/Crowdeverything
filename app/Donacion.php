@@ -15,7 +15,11 @@ class Donacion extends Model
         'anonimo',
     ];
 
-    public function Proyecto(){
-        
+    public function Recurso(){
+        return $this->hasMany('App\Recurso');
+    }
+
+    public function Usuario(){
+        return $this->hasMany('App\User');
     }
 }
