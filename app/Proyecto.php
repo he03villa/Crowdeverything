@@ -38,4 +38,8 @@ class Proyecto extends Model
     public function Redes(){
         return $this->hasMany('App\Proyecto_redes_social');
     }
+
+    public function Donacion(){
+        return $this->hasMany('App\Donacion');
+    }
 }

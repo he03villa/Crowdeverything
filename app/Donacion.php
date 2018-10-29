@@ -15,11 +15,15 @@ class Donacion extends Model
         'anonimo',
     ];
 
+    public function Proyecto(){
+        return $this->belongsTo('App\Proyecto');
+    }
+
     public function Recurso(){
-        return $this->hasMany('App\Recurso');
+        return $this->belongsTo('App\Recurso');
     }
 
     public function Usuario(){
-        return $this->hasMany('App\User');
+        return $this->belongsTo('App\User');
     }
 }

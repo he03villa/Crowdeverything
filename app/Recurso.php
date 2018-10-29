@@ -21,4 +21,8 @@ class Recurso extends Model
     public function Tipo_recurso(){
         return $this->belongsTo('App\Tipo_recurso');
     }
+
+    public function Donacion(){
+        return $this->hasMany('App\Donacion');
+    }
 }
