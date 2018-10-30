@@ -2,6 +2,12 @@
 
 @section('content')
 <div class="container">
+        @php
+            $valor = $datos[0]['valor']
+        @endphp
+        @php
+            $total = $datos[0]['total']
+        @endphp
         <div class="row">
             <div class="col-sm-8">
                 <div class="row" style="background-color: white">
@@ -13,7 +19,11 @@
                             <div class="col-sm-4">
                                 <div class="box">
                                     <label for="" style="margin-bottom: 33px">Financiero</label>
-                                    <div class="chart" data-percent="0">0%</div>
+                                    @if($valor == 'null')
+                                            <div class="chart" data-percent="0">0%</div>
+                                        @else
+                                            <div class="chart" data-percent="{{ round(($valor[0]['fin']*100)/$total[0]->costo,2) }}">{{ round(($valor[0]['fin']*100)/$total[0]->costo,2) }}%</div>
+                                        @endif
                                     <div class="let">
                                         @guest
                                             <a href="#logout" data-toggle="modal" class="btn btn-primary"><i class="fas fa-piggy-bank"></i></a>
@@ -26,7 +36,11 @@
                             <div class="col-sm-4">
                                 <div class="box">
                                     <label for="">Materia Prima</label>
-                                    <div class="chart" data-percent="0">0%</div>
+                                    @if($valor == 'null')
+                                        <div class="chart" data-percent="0">0%</div>
+                                    @else
+                                        <div class="chart" data-percent="{{ round(($valor[0]['mate']*100)/$total[1]->costo,2) }}">{{ round(($valor[0]['mate']*100)/$total[1]->costo,2) }}%</div>
+                                    @endif
                                     <div class="let">
                                         @guest
                                             <a href="#logout" data-toggle="modal" class="btn btn-primary" id="mate"><i class="fas fa-cogs"></i></a>
@@ -39,7 +53,11 @@
                             <div class="col-sm-4">
                                 <div class="box">
                                     <label for="">Talento Humano</label>
-                                    <div class="chart" data-percent="0">0%</div>
+                                    @if($valor == 'null')
+                                        <div class="chart" data-percent="0">0%</div>
+                                    @else
+                                        <div class="chart" data-percent="{{ round(($valor[0]['recur']*100)/$total[2]->costo,2) }}">{{ round(($valor[0]['recur']*100)/$total[2]->costo,2) }}%</div>
+                                    @endif
                                     <div class="let">
                                         @guest
                                             <a href="#logout" data-toggle="modal" class="btn btn-primary" id="recur"><i class="fas fa-users"></i></a>

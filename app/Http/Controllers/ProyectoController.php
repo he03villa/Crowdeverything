@@ -169,7 +169,7 @@ class ProyectoController extends Controller
     public function show(Proyecto $proyecto)
     {
         $dato1 = DB::select('call db_porcentaje(?)', array($proyecto->id));
-        $dato2 = DB::select('call db_cantida(?)', array($proyectos->id));
+        $dato2 = DB::select('call db_cantida(?)', array($proyecto->id));
         $datos = array();
         if (count($dato1) <= 0) {
             $datos[] = [
