@@ -168,21 +168,22 @@
                     </div>
                 </div>
                 <div class="row" style="background-color: white; margin-left: 5px">
-                      <div class="col-ms-4">
-                            <img src="{{ Storage::url($proyecto->foto) }}" class="img-lg-1" alt="imagen de perfil"><br>
-                            <label for="" class="h6" style="margin-left: 10px">Nombre</label><br>
-                            <label for="" class="h6" style="margin-left: 10px">Contribución</label>
-                      </div>
-                      <div class="col-ms-4">
-                            <img src="{{ Storage::url($proyecto->foto) }}" class="img-lg-1" alt="imagen de perfil"><br>
-                            <label for="" class="h6" style="margin-left: 10px">Nombre</label><br>
-                            <label for="" class="h6" style="margin-left: 10px">Contribución</label>
-                      </div>
-                      <div class="col-ms-4">
-                            <img src="{{ Storage::url($proyecto->foto) }}" class="img-lg-1" alt="imagen de perfil"><br>
-                            <label for="" class="h6" style="margin-left: 10px">Nombre</label><br>
-                            <label for="" class="h6" style="margin-left: 10px">Contribución</label>
-                      </div>
+                    @for($i = 0; $i < count($usuario); $i++)
+                        <div class="col-ms-4">
+                            @if($usuario[$i]['anonimo'] == 0)
+                                {{ Html::image('img/perfil.jpg','Imagen no encontrada', array('id' => 'perfil', 'title' => 'perfil', 'class' => 'img-lg-1')) }}<br>
+                                <label for="" class="h6" style="margin-left: 10px">Anonimo</label>
+                            @else
+                                @if($usuario[$i]['foto'])
+                                    <img src="{{ Storage::url($usuario[$i]['foto']) }}" class="img-lg-1" alt="imagen de perfil"><br>
+                                @else
+                                {{ Html::image('img/perfil.jpg','Imagen no encontrada', array('id' => 'perfil', 'title' => 'perfil', 'class' => 'img-lg-1')) }}<br>
+                                @endif
+                                <label for="" class="h6" style="margin-left: 10px">{{ $usuario[$i]['nombre'] }}</label><br>
+                                <label for="" class="h6" style="margin-left: 10px">Contribución</label>
+                            @endif
+                        </div>
+                    @endfor
                 </div>
                 <div class="row" style="background-color: white; margin-left: 5px; margin-top: 20px">
                     <div class="col-ms-12">
