@@ -168,22 +168,26 @@
                     </div>
                 </div>
                 <div class="row" style="background-color: white; margin-left: 5px">
-                    @for($i = 0; $i < count($usuario); $i++)
-                        <div class="col-ms-4">
-                            @if($usuario[$i]['anonimo'] == 0)
-                                {{ Html::image('img/perfil.jpg','Imagen no encontrada', array('id' => 'perfil', 'title' => 'perfil', 'class' => 'img-lg-1')) }}<br>
-                                <label for="" class="h6" style="margin-left: 10px">Anonimo</label>
-                            @else
-                                @if($usuario[$i]['foto'])
-                                    <img src="{{ Storage::url($usuario[$i]['foto']) }}" class="img-lg-1" alt="imagen de perfil"><br>
+                @if($use[0]['user'] != 'null' || $use[0]['anonimo'] != 'null')
+                        @for($i = 0; $i < count($usuario); $i++)
+                            <div class="col-ms-4">
+                                @if($usuario[$i]['anonimo'] == 0)
+                                    {{ Html::image('img/perfil.jpg','Imagen no encontrada', array('id' => 'perfil', 'title' => 'perfil', 'class' => 'img-lg-1')) }}<br>
+                                    <label for="" class="h6" style="margin-left: 10px">Anonimo</label>
                                 @else
-                                {{ Html::image('img/perfil.jpg','Imagen no encontrada', array('id' => 'perfil', 'title' => 'perfil', 'class' => 'img-lg-1')) }}<br>
+                                    @if($usuario[$i]['foto'])
+                                        <img src="{{ Storage::url($usuario[$i]['foto']) }}" class="img-lg-1" alt="imagen de perfil"><br>
+                                    @else
+                                    {{ Html::image('img/perfil.jpg','Imagen no encontrada', array('id' => 'perfil', 'title' => 'perfil', 'class' => 'img-lg-1')) }}<br>
+                                    @endif
+                                    <label for="" class="h6" style="margin-left: 10px">{{ $usuario[$i]['nombre'] }}</label><br>
+                                    <label for="" class="h6" style="margin-left: 10px">Contribución</label>
                                 @endif
-                                <label for="" class="h6" style="margin-left: 10px">{{ $usuario[$i]['nombre'] }}</label><br>
-                                <label for="" class="h6" style="margin-left: 10px">Contribución</label>
-                            @endif
-                        </div>
-                    @endfor
+                            </div>
+                        @endfor
+                    @else
+                        <h1>Este proyecto no tiene donaciones</h1>
+                    @endif
                 </div>
                 <div class="row" style="background-color: white; margin-left: 5px; margin-top: 20px">
                     <div class="col-ms-12">
@@ -211,7 +215,7 @@
                                     @endif
                                 @endfor
                             @else
-                                <h1>No hay redes social en este proyecto</h1>
+                                <h1>No hay redes sociales en este proyecto</h1>
                             @endif
                         </div>
                     </div>

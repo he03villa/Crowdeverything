@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Proyecto;
 use App\Recurso;
 use App\Donacion;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -168,6 +169,45 @@ class ProyectoController extends Controller
      */
     public function show(Proyecto $proyecto)
     {
+        $donacion = $proyecto->Donacion;
+        $use = array();
+        if (!$donacion) {
+            $use[] = [
+                'user' => $donacion[0]->usuario_id,
+                'anonimo' => $donacion[0]->anonimo
+            ];
+            for ($i=1; $i < count($donacion); $i++) { 
+                if ($use[$i-1]['user'] != $donacion[$i]->usuario_id) {
+                    $use[] = [
+                        'user' => $donacion[$i]->usuario_id,
+                        'anonimo' => $donacion[$i]->anonimo
+                    ];
+                }
+            }
+        } else {
+            $use[] = [
+                'user' => 'null',
+                'anonimo' => 'null'
+            ];
+        }
+        $usuario = array();
+        if ($use[0]['user'] == 'null' || $use[0]['anonimo']) {
+            $usuario[] = [
+                'foto' => 'null',
+                'nombre' => 'null',
+                'anonimo' => 'null'
+            ];
+        } else {
+            for ($i=0; $i < count($use); $i++) { 
+                $us = User::where('id',$use[$i]['user'])->get();
+                $usuario[] = [
+                    'foto' => $us->get(0)->foto,
+                    'nombre' => $us->get(0)->nombre,
+                    'anonimo' => $use[$i]['anonimo']
+                ];
+            }
+        }
+        //dd($use);
         $dato1 = DB::select('call db_porcentaje(?)', array($proyecto->id));
         $dato2 = DB::select('call db_cantida(?)', array($proyecto->id));
         $datos = array();
@@ -272,7 +312,7 @@ class ProyectoController extends Controller
             }
             
         }
-        return view('proyec.show',compact('proyecto','financi','matera','talen','datos'));
+        return view('proyec.show',compact('proyecto','financi','matera','talen','datos','usuario','use'));
     }
 
     /**
