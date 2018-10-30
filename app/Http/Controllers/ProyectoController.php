@@ -6,6 +6,7 @@ use App\Proyecto;
 use App\Recurso;
 use App\Donacion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProyectoController extends Controller
 {
@@ -17,7 +18,87 @@ class ProyectoController extends Controller
     public function index()
     {
         $proyectos = Proyecto::get();
-        return view('welcome',compact('proyectos'));
+        $datos = array();
+        for ($i=0; $i < count($proyectos); $i++) { 
+            $dato1 = DB::select('call db_porcentaje(?)', array($proyectos[$i]['id']));
+            $dato2 = DB::select('call db_cantida(?)', array($proyectos[$i]['id']));
+            if (count($dato1) <= 0) {
+                $datos[] = [
+                    'valor' => 'null',
+                    'total' => 'null'
+                ];
+            } else {
+                $vec = array();
+                if (count($dato1) == 1) {
+                    if ($dato1[0]->tipo == 1) {
+                        $vec[] = [
+                            'fin' => $dato1[0]->total,
+                            'mate' => '0',
+                            'recur' => '0'
+                        ];
+                    } else {
+                        if ($dato1[0]->tipo == 2) {
+                            $vec[] = [
+                                'fin' => '0',
+                                'mate' => $dato1[0]->total,
+                                'recur' => '0'
+                            ];
+                        } else {
+                            if ($dato1[0]->tipo == 3) {
+                                $vec[] = [
+                                    'fin' => '0',
+                                    'mate' => '0',
+                                    'recur' => $dato1[0]->total
+                                ];
+                            } 
+                        }
+                        
+                    }
+                    
+                } else {
+                    if (count($dato1) == 2) {
+                        if ($dato1[0]->tipo == 1 && $dato1[1]->tipo == 2) {
+                            $vec[] = [
+                                'fin' => $dato1[0]->total,
+                                'mate' => $dato1[1]->total,
+                                'recur' => '0'
+                            ];
+                        } else {
+                            if ($dato1[0]->tipo == 2 && $dato1[1]->tipo == 3) {
+                                $vec[] = [
+                                    'fin' => '0',
+                                    'mate' => $dato1[0]->total,
+                                    'recur' => $dato1[1]->total
+                                ];
+                            } else {
+                                if ($dato1[0]->tipo == 1 && $dato1[1]->tipo == 3) {
+                                    $vec[] = [
+                                        'fin' => $dato1[0]->total,
+                                        'mate' => '0',
+                                        'recur' => $dato1[1]->total
+                                    ];
+                                }
+                            }
+                        }
+                    } else {
+                        if (count($dato1) == 3) {
+                            $vec[] = [
+                                'fin' => $dato1[0]->total,
+                                'mate' => $dato1[1]->total,
+                                'recur' => $dato1[2]->total
+                            ];
+                        }
+                    }
+                    
+                }
+                $datos[] = [
+                    'valor' => $vec,
+                    'total' => $dato2
+                ];
+            }
+        }
+        //return dd($datos);
+        return view('welcome',compact('proyectos', 'datos'));
     }
 
     /**
@@ -87,6 +168,83 @@ class ProyectoController extends Controller
      */
     public function show(Proyecto $proyecto)
     {
+        $dato1 = DB::select('call db_porcentaje(?)', array($proyecto->id));
+        $dato2 = DB::select('call db_cantida(?)', array($proyectos->id));
+        $datos = array();
+        if (count($dato1) <= 0) {
+            $datos[] = [
+                'valor' => 'null',
+                'total' => 'null'
+            ];
+        } else {
+            $vec = array();
+            if (count($dato1) == 1) {
+                if ($dato1[0]->tipo == 1) {
+                    $vec[] = [
+                        'fin' => $dato1[0]->total,
+                        'mate' => '0',
+                        'recur' => '0'
+                    ];
+                } else {
+                    if ($dato1[0]->tipo == 2) {
+                        $vec[] = [
+                            'fin' => '0',
+                            'mate' => $dato1[0]->total,
+                            'recur' => '0'
+                        ];
+                    } else {
+                        if ($dato1[0]->tipo == 3) {
+                            $vec[] = [
+                                'fin' => '0',
+                                'mate' => '0',
+                                'recur' => $dato1[0]->total
+                            ];
+                        } 
+                    }
+                    
+                }
+                
+            } else {
+                if (count($dato1) == 2) {
+                    if ($dato1[0]->tipo == 1 && $dato1[1]->tipo == 2) {
+                        $vec[] = [
+                            'fin' => $dato1[0]->total,
+                            'mate' => $dato1[1]->total,
+                            'recur' => '0'
+                        ];
+                    } else {
+                        if ($dato1[0]->tipo == 2 && $dato1[1]->tipo == 3) {
+                            $vec[] = [
+                                'fin' => '0',
+                                'mate' => $dato1[0]->total,
+                                'recur' => $dato1[1]->total
+                            ];
+                        } else {
+                            if ($dato1[0]->tipo == 1 && $dato1[1]->tipo == 3) {
+                                $vec[] = [
+                                    'fin' => $dato1[0]->total,
+                                    'mate' => '0',
+                                    'recur' => $dato1[1]->total
+                                ];
+                            }
+                        }
+                    }
+                } else {
+                    if (count($dato1) == 3) {
+                        $vec[] = [
+                            'fin' => $dato1[0]->total,
+                            'mate' => $dato1[1]->total,
+                            'recur' => $dato1[2]->total
+                        ];
+                    }
+                }
+                
+            }
+            $datos[] = [
+                'valor' => $vec,
+                'total' => $dato2
+            ];
+        }
         $recurso = $proyecto->Recurso;
         $financi = array();
         $matera = array();
@@ -114,7 +272,7 @@ class ProyectoController extends Controller
             }
             
         }
-        return view('proyec.show',compact('proyecto','financi','matera','talen'));
+        return view('proyec.show',compact('proyecto','financi','matera','talen','datos'));
     }
 
     /**
