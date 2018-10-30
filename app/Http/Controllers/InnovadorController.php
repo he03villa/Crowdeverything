@@ -10,6 +10,7 @@ use App\Proyecto;
 use App\Recurso;
 use App\Foto;
 use App\Proyecto_redes_social;
+use Illuminate\Support\Facades\DB;
 
 class InnovadorController extends Controller
 {

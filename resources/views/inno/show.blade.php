@@ -1,6 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+    @php
+        $valor = $datos[0]['valor']
+    @endphp
+    @php
+        $total = $datos[0]['total']
+    @endphp
     <div class="container">
         <div class="row">
             <div class="col-sm-8">
@@ -14,19 +20,31 @@
                             <div class="col-sm-4">
                                 <div class="box">
                                     <label for="" style="margin-bottom: 33px">Financiero</label>
-                                    <div class="chart" data-percent="0">0%</div>
+                                    @if($valor == 'null')
+                                        <div class="chart" data-percent="0">0%</div>
+                                    @else
+                                        <div class="chart" data-percent="{{ round(($valor[0]['fin']*100)/$total[0]->costo,2) }}">{{ round(($valor[0]['fin']*100)/$total[0]->costo,2) }}%</div>
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-sm-4">
                                 <div class="box">
                                     <label for="">Materia Prima</label>
-                                    <div class="chart" data-percent="0">0%</div>
+                                    @if($valor == 'null')
+                                        <div class="chart" data-percent="0">0%</div>
+                                    @else
+                                        <div class="chart" data-percent="{{ round(($valor[0]['mate']*100)/$total[1]->costo,2) }}">{{ round(($valor[0]['mate']*100)/$total[1]->costo,2) }}%</div>
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-sm-4">
                                 <div class="box">
                                     <label for="">Talento Humano</label>
-                                    <div class="chart" data-percent="0">0%</div>
+                                    @if($valor == 'null')
+                                        <div class="chart" data-percent="0">0%</div>
+                                    @else
+                                        <div class="chart" data-percent="{{ round(($valor[0]['recur']*100)/$total[2]->costo,2) }}">{{ round(($valor[0]['recur']*100)/$total[2]->costo,2) }}%</div>
+                                    @endif
                                 </div>
                             </div>
                         </div>

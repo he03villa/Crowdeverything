@@ -19,7 +19,7 @@
                             <div class="col-sm-4">
                                 <div class="box">
                                     <label for="" style="margin-bottom: 33px">Financiero</label>
-                                    @if($valor == 'null')
+                                        @if($valor == 'null')
                                             <div class="chart" data-percent="0">0%</div>
                                         @else
                                             <div class="chart" data-percent="{{ round(($valor[0]['fin']*100)/$total[0]->costo,2) }}">{{ round(($valor[0]['fin']*100)/$total[0]->costo,2) }}%</div>
