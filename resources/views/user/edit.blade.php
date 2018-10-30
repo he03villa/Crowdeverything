@@ -18,7 +18,7 @@
                         <div class="col-sm-6 col-xl-6">
                             <div class="form-group">
                                 <label for="nombre">Nombre</label>
-                                <input type="text" name="nombre" id="nombre" class="form-control{{ $errors->has('nombre') ? ' is-invalid' : '' }}" value="{{ $user->nombre }}" required autofocus>
+                                <input type="text" name="nombre" id="nombre" class="form-control{{ $errors->has('nombre') ? ' is-invalid' : '' }}" value="{{ $user->nombre }}" required autofocus placeholder="Ingrese el nombre">
                                 @if ($errors->has('nombre'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('nombre') }}</strong>
@@ -27,7 +27,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="apellido">Apellido</label>
-                                <input type="text" name="apellido" id="apellido" class="form-control{{ $errors->has('apellido') ? ' is-invalid' : '' }}" value="{{ $user->apellido }}" required autofocus>
+                                <input type="text" name="apellido" id="apellido" class="form-control{{ $errors->has('apellido') ? ' is-invalid' : '' }}" value="{{ $user->apellido }}" required autofocus placeholder="Ingrese el apellido">
                                 @if ($errors->has('apellido'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('apellido') }}</strong>
@@ -36,7 +36,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="nombre_usuario">Nombre usuario</label>
-                                <input type="text" name="nombre_usuario" id="nombre_usuario" class="form-control{{ $errors->has('nombre_usuario') ? ' is-invalid' : '' }}" value="{{ $user->nombre_usuario }}" required autofocus>
+                                <input type="text" name="nombre_usuario" id="nombre_usuario" class="form-control{{ $errors->has('nombre_usuario') ? ' is-invalid' : '' }}" value="{{ $user->nombre_usuario }}" required autofocus placeholder="Ingrese una contraseña">
                                 @if ($errors->has('nombre_usuario'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('nombre_usuario') }}</strong>
@@ -49,7 +49,7 @@
                         <div class="col-sm-6 col-xl-6">
                         <div class="form-group">
                                 <label for="direccion">Direccion</label>
-                                <input type="text" name="direccion" id="direccion" class="form-control{{ $errors->has('direccion') ? ' is-invalid' : '' }}" value="{{ $user->direccion }}" required autofocus>
+                                <input type="text" name="direccion" id="direccion" class="form-control{{ $errors->has('direccion') ? ' is-invalid' : '' }}" value="{{ $user->direccion }}" required autofocus placeholder="Ingrese una dirección">
                                 @if ($errors->has('direccion'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('direccion') }}</strong>
@@ -83,7 +83,7 @@
                         <div class="col-ms-12 col-xl-12">
                             <div class="form-group">
                                 <label for="descripcion">Descripción</label>
-                                <textarea class="form-control" name="descripcion" id="descripcion" cols="260" rows="10" placeholder="Descripcion">{{ $user->descripcion }}</textarea>
+                                <textarea class="form-control" name="descripcion" id="descripcion" cols="260" rows="10" placeholder="Ingrese una descripción">{{ $user->descripcion }}</textarea>
                             </div>
                         </div>
                     </div>
