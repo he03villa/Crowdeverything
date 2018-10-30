@@ -36,7 +36,7 @@
                         <div class="col-ms-12 col-xl-12">
                             <div class="form-group">
                                 <label for="descripcion">Descripción</label>
-                                <textarea class="form-control" name="descripcion" id="descripcion" cols="260" rows="10" placeholder="Descripcion"></textarea>
+                                <textarea class="form-control" name="descripcion" id="descripcion" cols="260" rows="10" placeholder="Ingrese la descripción"></textarea>
                             </div>
                         </div>
                     </div>
