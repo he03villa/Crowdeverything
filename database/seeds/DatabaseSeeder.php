@@ -22,6 +22,8 @@ class DatabaseSeeder extends Seeder
             Redes_socialTableSeeder::Class,
             Tipo_recursoTableSeeder::Class,
             Tipo_proyectoTableSeeder::Class,
+            UserTableSeeder::Class,
+            Roles_userTableSeeder::Class,
         ]);
     }
 }
