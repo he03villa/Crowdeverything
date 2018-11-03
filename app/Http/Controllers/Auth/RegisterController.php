@@ -71,23 +71,38 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $user = new User();
         $ciudad = Ciudad::where('nombre',$data['ciudad'])->get();
         $tipo_documento = Tipo_documento::where('nombre',$data['tipo_documento'])->get();
-        $user->nombre = $data['nombre'];
-        $user->apellido = $data['apellido'];
-        $user->email = $data['email'];
-        $user->telefono = $data['telefono'];
-        $user->identificacion = $data['identificacion'];
-        $user->direccion = $data['direccion'];
-        $user->nombre_usuario = $data['nombre_usuario'];
-        $user->password = Hash::make($data['password']);
-        $user->estado = 1;
-        $user->ciudad_id = $ciudad->get(0)->id;
-        $user->tipo_documento_id = $tipo_documento->get(0)->id;
-        $user->descripcion = $data['descripcion'];
-        $user->save();
-        $user->roles()->sync([2,3]);
+        $user = $this->verificar($data['email']);
+        if ($user->get(0)){
+            $roles = $user->get(0)->getRoles();
+            if ($roles[0] == 'evalu') {
+                $user->get(0)->roles()->sync([2,3,4]);
+            }
+            if ($roles[0] == 'admin') {
+                $user->get(0)->roles()->sync([1,2,3,4]);
+            }
+        } else {
+            $user = new User();
+            $user->nombre = $data['nombre'];
+            $user->apellido = $data['apellido'];
+            $user->email = $data['email'];
+            $user->telefono = $data['telefono'];
+            $user->identificacion = $data['identificacion'];
+            $user->direccion = $data['direccion'];
+            $user->nombre_usuario = $data['nombre_usuario'];
+            $user->password = Hash::make($data['password']);
+            $user->estado = 1;
+            $user->ciudad_id = $ciudad->get(0)->id;
+            $user->tipo_documento_id = $tipo_documento->get(0)->id;
+            $user->descripcion = $data['descripcion'];
+            $user->save();
+            $user->roles()->sync([2,3]);
+        }
         return $user;
+    }
+
+    public function verificar($email){
+        return User::where('email',$email)->get();
     }
 }

@@ -55,8 +55,10 @@
                 </table>
             </div>
             <div class="col-ms-6 col-xl-6">
-                <p>Esta opción es para guardar los proyectos en la aplicación web</p>
-                <a href="{{ route('inno.index') }}" class="btn">Agregar proyecto <i class="fas fa-plus"></i></a>
+                @can('inno.index')
+                    <p>Esta opción es para guardar los proyectos en la aplicación web</p>
+                    <a href="{{ route('inno.index') }}" class="btn">Agregar proyecto <i class="fas fa-plus"></i></a>
+                @endcan
             </div>
         </div>
     </div>

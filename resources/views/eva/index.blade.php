@@ -6,15 +6,14 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
-                        Evaladores
-                        <a href="{{ route('admin.create') }}" class="btn btn-sm btn-primary pull-right">Crear usuario</a>
+                        Proyecto
                     </div>
                     <div class="card-body">
                         <table id="table" class="table table-hover">
                             <thead>
                                 <tr>
                                     <td>#</td>
-                                    <td>Nombre</td>
+                                    <td>Proyecto</td>
                                     <td>opcion</td>
                                 </tr>
                             </thead>
@@ -22,15 +21,14 @@
                                 @php
                                     $i=1;
                                 @endphp
-                                @foreach($users as $user)
-                                    @if($user->id != Auth::user()->id)
+                                @foreach($proyectos as $proyecto)
+                                    @if($proyecto->publicacion == 0)
                                         <tr>
                                             <td>{{ $i++ }}</td>
-                                            <td>{{ $user->nombre }}</td>
+                                            <td>{{ $proyecto->nombre }}</td>
                                             <td>
                                                 <a href="" class="btn"><i class="fas fa-info"></i></a>
-                                                <a href="" style="color:green" class="btn"><i class="fas fa-power-off"></i></a>
-                                                <a href="" style="color:red" class="btn"><i class="fas fa-power-off"></i></a>
+                                                <a href="" style="color:green" class="btn"><i class="fas fa-upload"></i></a>
                                             </td>
                                         </tr>
                                     @endif
