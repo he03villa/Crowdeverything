@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Proyesto;
+use App\Proyecto;
 
 class EvaluadorController extends Controller
 {
@@ -14,8 +14,8 @@ class EvaluadorController extends Controller
      */
     public function index()
     {
-        $proyectos = Proyesto::paginate();
-        return view('users.index', compact('proyectos'));
+        $proyectos = Proyecto::paginate();
+        return view('eva.index', compact('proyectos'));
     }
 
     /**
@@ -45,9 +45,9 @@ class EvaluadorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Proyecto $proyecto)
     {
-        //
+        return view('eva.show', compact('proyecto'));
     }
 
     /**
@@ -68,9 +68,10 @@ class EvaluadorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,Proyecto $proyecto)
     {
-        //
+        $proyecto->publicacion = 1;
+        $proyecto->save();
     }
 
     /**
