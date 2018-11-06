@@ -68,6 +68,11 @@ class PermissionsHasRolesTableSeeder extends Seeder
             'role_id' => '2',
         ]);
 
+        DB::table('permission_role')->insert([
+            'permission_id' => '11',
+            'role_id' => '2',
+        ]);
+
         //Patrocinador
         DB::table('permission_role')->insert([
             'permission_id' => '1',
@@ -85,7 +90,7 @@ class PermissionsHasRolesTableSeeder extends Seeder
         ]);
 
         DB::table('permission_role')->insert([
-            'permission_id' => '11',
+            'permission_id' => '12',
             'role_id' => '3',
         ]);
 
@@ -106,17 +111,17 @@ class PermissionsHasRolesTableSeeder extends Seeder
         ]);
 
         DB::table('permission_role')->insert([
-            'permission_id' => '12',
-            'role_id' => '4',
-        ]);
-
-        DB::table('permission_role')->insert([
             'permission_id' => '13',
             'role_id' => '4',
         ]);
 
         DB::table('permission_role')->insert([
             'permission_id' => '14',
+            'role_id' => '4',
+        ]);
+
+        DB::table('permission_role')->insert([
+            'permission_id' => '15',
             'role_id' => '4',
         ]);
 
@@ -137,11 +142,6 @@ class PermissionsHasRolesTableSeeder extends Seeder
         ]);
 
         DB::table('permission_role')->insert([
-            'permission_id' => '15',
-            'role_id' => '1',
-        ]);
-
-        DB::table('permission_role')->insert([
             'permission_id' => '16',
             'role_id' => '1',
         ]);
@@ -153,6 +153,11 @@ class PermissionsHasRolesTableSeeder extends Seeder
 
         DB::table('permission_role')->insert([
             'permission_id' => '18',
+            'role_id' => '1',
+        ]);
+
+        DB::table('permission_role')->insert([
+            'permission_id' => '19',
             'role_id' => '1',
         ]);
     }

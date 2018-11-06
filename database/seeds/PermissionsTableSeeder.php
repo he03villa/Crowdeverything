@@ -74,6 +74,12 @@ class PermissionsTableSeeder extends Seeder
             'description' => 'Esta accion le permite al innovador registrar un proyecto'
         ]);
 
+        Permission::create([
+            'name' => 'Crear recurso',
+            'slug' => 'recur.store',
+            'description' => 'Esta accion le permite al innovador registrar un nuevo recurso'
+        ]);
+
         //Patrocinador
         Permission::create([
             'name' => 'Donar',

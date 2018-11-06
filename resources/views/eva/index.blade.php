@@ -25,10 +25,9 @@
                                     @if($proyecto->publicacion == 0)
                                         <tr>
                                             <td>{{ $i++ }}</td>
-                                            <td>{{ $proyecto->nombre }}</td>
+                                            <td>{{ $proyecto->nombre_proyecto }}</td>
                                             <td>
-                                                <a href="" class="btn"><i class="fas fa-info"></i></a>
-                                                <a href="" style="color:green" class="btn"><i class="fas fa-upload"></i></a>
+                                                <a href="{{ route('eva.show',$proyecto->id) }}" class="btn"><i class="fas fa-info"></i></a>
                                             </td>
                                         </tr>
                                     @endif

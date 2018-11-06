@@ -22,7 +22,7 @@ function recursos(recur){
     $('#res-recurso').append(
         "<div class='form-group'>"+
             "<label for='re'>Recurso "+ x +"</label>"+
-            "<select class='form-control' name='tipo[]' id='opcion' onchange='cambioOpciones("+x+")'>"+
+            "<select class='form-control' name='tipo[]' id='opcion"+x+"' onchange='cambioOpciones("+x+")'>"+
                 "<option>Seleccione el tipo de recurso</option>"+
                 contenido+
             "</select>"+
@@ -66,7 +66,7 @@ function rede(rede){
 }
 
 function cambioOpciones(x){
-    var cambiar = document.getElementById('opcion');
+    var cambiar = document.getElementById('opcion'+x);
     var opcion = cambiar.value;
     if (opcion == 'Financiero') {
         $('#op'+x).empty();

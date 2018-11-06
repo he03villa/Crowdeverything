@@ -204,6 +204,33 @@ body {
 	color: #F4F4F4;
 }
 
+.row .publicar{
+	width: 160px;
+	height:50px;
+	margin-top: 70px;
+	margin-left: 110px;
+}
+
+.row .publicar label{
+	font-size: 45px;
+	color: #ffc107;
+}
+
+.row .publicar a{
+	text-decoration: none;
+	border: none;
+	outline: none;
+	color: black;
+	font-size: 18px;
+	margin-left: 30px;
+}
+
+.row .publicar a:hover{
+	margin-left: 14px;
+	color: blueviolet;
+	font-size: 25px;
+}
+
 #fondo-blanco {
 	background: rgb(230, 230, 230);
 	background-color: white !important;

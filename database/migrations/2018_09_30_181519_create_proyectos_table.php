@@ -16,9 +16,11 @@ class CreateProyectosTable extends Migration
         Schema::create('proyectos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('foto');
-            $table->string('nombre_proyecto',20);
+            $table->string('nombre_proyecto',50);
             $table->text('descripcion');
             $table->integer('publicacion');
+            $table->date('fecha_inicio')->nullable();
+            $table->date('fecha_final')->nullable();
             $table->unsignedInteger('tipo_proyecto_id');
             $table->foreign('tipo_proyecto_id')->references('id')->on('tipo_proyectos');
             $table->unsignedInteger('user_id');
