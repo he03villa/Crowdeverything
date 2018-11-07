@@ -117,9 +117,6 @@ class EvaluadorController extends Controller
             }
             
         }
-        /*$proyecto->publicacion = 1;
-        $proyecto->save();*/
-        //return $request;
     }
 
     /**
