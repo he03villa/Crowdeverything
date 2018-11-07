@@ -71,6 +71,9 @@ Route::middleware(['auth'])->group(function(){
     //Administrador
     Route::get('/admin/index','AdministradorController@index')->name('admin.index')
         ->middleware('permission:admin.index');
+
+    Route::get('/admin/{user}','AdministradorController@show')->name('admin.show')
+        ->middleware('permission:admin.show');
     
     Route::get('/admin/create','AdministradorController@create')->name('admin.create')
         ->middleware('permission:admin.create');

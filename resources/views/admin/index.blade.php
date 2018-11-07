@@ -28,7 +28,7 @@
                                             <td>{{ $i++ }}</td>
                                             <td>{{ $user->nombre }}</td>
                                             <td>
-                                                <a href="" class="btn"><i class="fas fa-info"></i></a>
+                                                <a href="{{ route('admin.show',$user->id) }}" class="btn"><i class="fas fa-info"></i></a>
                                                 <a href="" style="color:green" class="btn"><i class="fas fa-power-off"></i></a>
                                                 <a href="" style="color:red" class="btn"><i class="fas fa-power-off"></i></a>
                                             </td>

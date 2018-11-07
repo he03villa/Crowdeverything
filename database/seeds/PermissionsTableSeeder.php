@@ -112,6 +112,12 @@ class PermissionsTableSeeder extends Seeder
             'slug' => 'admin.index',
             'description' => 'Esta accion le permite al administrador visualizar a los usuarios evaluadores'
         ]);
+
+        Permission::create([
+            'name' => 'Detalle del evaluador',
+            'slug' => 'admin.show',
+            'description' => 'Esta accion le permite al administrador visualizar ver en detalle los datos del usuario'
+        ]);
         
         Permission::create([
             'name' => 'Crear de evaluador',
