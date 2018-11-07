@@ -15,6 +15,8 @@ class Proyecto extends Model
         'descripcion', 
         'total',
         'publicacion',
+        'fecha_inicio',
+        'fecha_final',
         'user_id',
         'tipo_proyecto_id',
     ];

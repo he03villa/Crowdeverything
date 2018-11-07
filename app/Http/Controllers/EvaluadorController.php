@@ -99,8 +99,27 @@ class EvaluadorController extends Controller
      */
     public function update(Request $request,Proyecto $proyecto)
     {
-        $proyecto->publicacion = 1;
-        $proyecto->save();
+        if ($request->ajax()) {
+            if (!$request->get('fecha_inical') || !$request->get('fecha_final')) {
+                return response(1);
+            } else {
+                $fecha_inicio = date('Y-m-d',strtotime($request->get('fecha_inical')));
+                $fecha_final = date('Y-m-d',strtotime($request->get('fecha_final')));
+                if ($fecha_final > $fecha_inicio) {
+                    $proyecto->fecha_inicio = $fecha_inicio;
+                    $proyecto->fecha_final = $fecha_final;
+                    $proyecto->publicacion = 1;
+                    $proyecto->save();
+                    return response(3);
+                } else {
+                    return response(2);
+                }
+            }
+            
+        }
+        /*$proyecto->publicacion = 1;
+        $proyecto->save();*/
+        //return $request;
     }
 
     /**

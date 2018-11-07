@@ -25,10 +25,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $proyectos = Proyecto::get();
+        $hoy = getdate();
+        $fecha = $hoy['year'].'-'.$hoy['mon'].'-'.$hoy['mday'];
+        $proyectos = DB::select('call db_proyectos(?)', array($fecha));
+        //dd($proyectos);
         for ($i=0; $i < count($proyectos); $i++) { 
-            $dato1 = DB::select('call db_porcentaje(?)', array($proyectos[$i]['id']));
-            $dato2 = DB::select('call db_cantida(?)', array($proyectos[$i]['id']));
+            $dato1 = DB::select('call db_porcentaje(?)', array($proyectos[$i]->id));
+            $dato2 = DB::select('call db_cantida(?)', array($proyectos[$i]->id));
             if (count($dato1) <= 0) {
                 $datos[] = [
                     'valor' => 'null',

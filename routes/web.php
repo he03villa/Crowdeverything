@@ -65,7 +65,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/eva/{proyecto}','EvaluadorController@show')->name('eva.show')
         ->middleware('permission:eva.show');
     
-    Route::put('/eva/{proyecto}','EvaluadorController@show')->name('eva.update')
+    Route::put('/eva/{proyecto}','EvaluadorController@update')->name('eva.update')
         ->middleware('permission:eva.update');
 
     //Administrador
