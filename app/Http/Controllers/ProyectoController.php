@@ -239,13 +239,15 @@ class ProyectoController extends Controller
                 'user' => $donacion[0]->usuario_id,
                 'anonimo' => $donacion[0]->anonimo
             ];
-            for ($i=1; $i < count($donacion); $i++) { 
-                if ($use[$i-1]['user'] != $donacion[$i]->usuario_id) {
+            $x=0;
+            for ($i=1; $i < count($donacion); $i++) {
+                if ($use[$x]['user'] != $donacion[$i]->usuario_id) {
                     $use[] = [
                         'user' => $donacion[$i]->usuario_id,
                         'anonimo' => $donacion[$i]->anonimo
                     ];
-                }
+                    $x++;
+                }              
             }
         } else {
             $use[] = [

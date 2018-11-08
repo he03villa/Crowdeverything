@@ -45,7 +45,11 @@ $(document).ready(function(){
                         swal("Error", "Ingrese la cantidad", "error");
                     } else {
                         if (res == 3) {
-                            swal("Good job!", "La donacion ya fue regitrada con exito", "success");
+                            swal("Error", "La donación se excede la solicitada", "error");
+                        } else {
+                            if (res == 4) {
+                                swal("Good job!", "La donacion ya fue regitrada con exito", "success");
+                            }
                         }
                     }
                 }
@@ -70,7 +74,11 @@ $(document).ready(function(){
                         swal("Error", "Ingrese la cantidad", "error");
                     } else {
                         if (res == 3) {
-                            swal("Good job!", "La donacion ya fue regitrada con exito", "success");
+                            swal("Error", "La donación se excede la solicitada", "error");
+                        } else {
+                            if (res == 4) {
+                                swal("Good job!", "La donacion ya fue regitrada con exito", "success");
+                            }
                         }
                     }
                 }
