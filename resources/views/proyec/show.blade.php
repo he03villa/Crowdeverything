@@ -22,7 +22,11 @@
                                         @if($valor == 'null')
                                             <div class="chart" data-percent="0">0%</div>
                                         @else
-                                            <div class="chart" data-percent="{{ round(($valor[0]['fin']*100)/$total[0]->costo,2) }}">{{ round(($valor[0]['fin']*100)/$total[0]->costo,2) }}%</div>
+                                            @if($total[0]['fin'] == 0)
+                                                <div class="chart" data-percent="0">0%</div>
+                                            @else
+                                                <div class="chart" data-percent="{{ round(($valor[0]['fin']*100)/$total[0]['fin'],2) }}">{{ round(($valor[0]['fin']*100)/$total[0]['fin'],2) }}%</div>
+                                            @endif
                                         @endif
                                     <div class="let">
                                         @guest
@@ -39,7 +43,11 @@
                                     @if($valor == 'null')
                                         <div class="chart" data-percent="0">0%</div>
                                     @else
-                                        <div class="chart" data-percent="{{ round(($valor[0]['mate']*100)/$total[1]->costo,2) }}">{{ round(($valor[0]['mate']*100)/$total[1]->costo,2) }}%</div>
+                                        @if($total[0]['mate'] == 0)
+                                            <div class="chart" data-percent="0">0%</div>
+                                        @else
+                                            <div class="chart" data-percent="{{ round(($valor[0]['mate']*100)/$total[0]['mate'],2) }}">{{ round(($valor[0]['mate']*100)/$total[0]['mate'],2) }}%</div>
+                                        @endif
                                     @endif
                                     <div class="let">
                                         @guest
@@ -56,7 +64,11 @@
                                     @if($valor == 'null')
                                         <div class="chart" data-percent="0">0%</div>
                                     @else
-                                        <div class="chart" data-percent="{{ round(($valor[0]['recur']*100)/$total[2]->costo,2) }}">{{ round(($valor[0]['recur']*100)/$total[2]->costo,2) }}%</div>
+                                        @if($total[0]['recur'] == 0)
+                                            <div class="chart" data-percent="0">0%</div>
+                                        @else
+                                        <div class="chart" data-percent="{{ round(($valor[0]['recur']*100)/$total[0]['recur'],2) }}">{{ round(($valor[0]['recur']*100)/$total[0]['recur'],2) }}%</div>
+                                        @endif
                                     @endif
                                     <div class="let">
                                         @guest

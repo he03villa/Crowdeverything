@@ -92,11 +92,72 @@ class ProyectoController extends Controller
                             ];
                         }
                     }
+                }
+
+                $vect = array();
+                if (count($dato2) == 1) {
+                    if ($dato2[0]->tipo == 1) {
+                        $vect[] = [
+                            'fin' => $dato2[0]->costo,
+                            'mate' => '0',
+                            'recur' => '0'
+                        ];
+                    } else {
+                        if ($dato2[0]->tipo == 2) {
+                            $vect[] = [
+                                'fin' => '0',
+                                'mate' => $dato2[0]->costo,
+                                'recur' => '0'
+                            ];
+                        } else {
+                            if ($dato2[0]->tipo == 3) {
+                                $vect[] = [
+                                    'fin' => '0',
+                                    'mate' => '0',
+                                    'recur' => $dato2[0]->costo
+                                ];
+                            }
+                        }
+                    }
+                } else {
+                    if (count($dato2) == 2) {
+                        if ($dato2[0]->tipo == 1 && $dato2[1]->tipo == 2) {
+                            $vect[] = [
+                                'fin' => $dato2[0]->costo,
+                                'mate' => $dato2[1]->costo,
+                                'recur' => '0'
+                            ];
+                        } else {
+                            if ($dato2[0]->tipo == 2 && $dato2[1]->tipo == 3) {
+                                $vect[] = [
+                                    'fin' => '0',
+                                    'mate' => $dato2[0]->costo,
+                                    'recur' => $dato2[1]->costo
+                                ];
+                            } else {
+                                if ($dato2[0]->tipo == 1 && $dato2[1]->tipo == 3) {
+                                    $vect[] = [
+                                        'fin' => $dato2[0]->costo,
+                                        'mate' => '0',
+                                        'recur' => $dato2[1]->costo
+                                    ];
+                                }
+                            }
+                        }
+                    } else {
+                        if (count($dato2) == 3) {
+                            $vect[] = [
+                                'fin' => $dato2[0]->costo,
+                                'mate' => $dato2[1]->costo,
+                                'recur' => $dato2[2]->costo
+                            ];
+                        }
+                    }
                     
                 }
                 $datos[] = [
                     'valor' => $vec,
-                    'total' => $dato2
+                    'total' => $vect
                 ];
             }
         }
@@ -173,7 +234,7 @@ class ProyectoController extends Controller
     {
         $donacion = $proyecto->Donacion;
         $use = array();
-        if (!$donacion) {
+        if (count($donacion) != 0) {
             $use[] = [
                 'user' => $donacion[0]->usuario_id,
                 'anonimo' => $donacion[0]->anonimo
@@ -375,7 +436,7 @@ class ProyectoController extends Controller
                 
             }
         }
-        dd($datos);
+        //dd($datos);
         return view('proyec.show',compact('proyecto','financi','matera','talen','datos','usuario','use'));
     }
 
