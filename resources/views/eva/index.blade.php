@@ -14,7 +14,7 @@
                                 <tr>
                                     <td>#</td>
                                     <td>Proyecto</td>
-                                    <td>opcion</td>
+                                    <td>opción</td>
                                 </tr>
                             </thead>
                             <tbody>

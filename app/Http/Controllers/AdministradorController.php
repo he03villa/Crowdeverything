@@ -103,16 +103,19 @@ class AdministradorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,USer $user)
+    public function update(Request $request,User $user)
     {
-        if ($user->estado == 1) {
-            $user->estado = 0;
-        } else {
-            if ($user->estado == 0) {
-                $user->estado = 1;
+        if ($request->ajax()) {
+            /*if ($user->estado == 1) {
+                $user->estado = 0;
+            } else {
+                if ($user->estado == 0) {
+                    $user->estado = 1;
+                }
             }
+            $user->save();*/
+            return response(1);
         }
-        $user->save();
     }
 
     /**
