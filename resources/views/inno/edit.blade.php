@@ -9,8 +9,11 @@
                     <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                     <div class="row">
                         <div class="col-ms-6 col-xl-6">
-                            <img src="{{ Storage::url($proyecto->foto) }}" alt="" id="imagePreview" title="perfil" class="perfil-1">
-                            <input type="file" name="ImageUpload" accept="imagen/jpeg, imagen/png" onchange="ShowImagePreview(this, document.getElementById('imagePreview'))" />
+                            <img src="{{ Storage::url($proyecto->foto) }}" alt="" id="imagePreview" title="perfil" class="perfil-1"><br>
+                            <div id="estilo-foto">
+                                <p> <i class="fas fa-file-image"></i> Agregar foto</p>
+                                <input type="file" id="foto" name="ImageUpload" accept="imagen/jpeg, imagen/png" onchange="ShowImagePreview(this, document.getElementById('imagePreview'))" />
+                            </div>
                         </div>
                         <div class="col-ms-6 col-xl-4">
                             <div class="form-group">
@@ -62,21 +65,39 @@
                             <div id="res-recurso"></div>
                             <button id="recurso" type="button" class="btn btn-secondary" onclick="recursos({{ $tipo_recursos }})">Agregar recurso</button>
                         </div>
-                        <div class="col-ms-4 col-xl-4">
-                            <div class="col-ms-6" id="">
-                                <label for="res-foto">Fotos</label>
-                                @foreach($proyecto->Foto as $foto)
-                                    <div class='form-group'>
-                                        <label for='im'>Imagen</label>
-                                        <input type="hidden" name="foto_id[]" value="{{ $foto->id }}">
-                                        <input type='file' class='form-control' id='im' name='foto[]' value="{{ $foto->nombre }}">
-                                    </div>
-                                @endforeach
-                                <div id="res-foto"></div>
-                                <button id="foto" type="button" class="btn btn-secondary" onclick="fotos()">Agregar foto</button>
-                            </div>
+                        <div class="col-ms-8 col-xl-4">
+                            <label for="res-foto">Fotos</label>
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <td>#</td>
+                                        <td>Foto</td>
+                                        <td>opción</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php
+                                        $i = 1;
+                                    @endphp
+                                    @foreach($proyecto->Foto as $foto)
+                                        <tr>
+                                            <td>{{ $i++ }}</td>
+                                            <input type="hidden" name="foto_id[]" value="{{ $foto->id }}">
+                                            <td><img src="{{ Storage::url($foto->nombre) }}" alt="" id="{{ 'imagePreview'.$i}}" title="perfil" width = "100px" height ="80px"></td>
+                                            <td>
+                                                <div id="estilo-foto">
+                                                    <p> <i class="fas fa-file-image"></i> Agregar foto</p>
+                                                    <input type='file' class='form-control' id='foto' name='foto[]' onchange="ShowImagePreview(this, document.getElementById('{{ 'imagePreview'.$i }}'))">
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
-                        <div class="col-ms-4 col-xl-4">
+                    </div>
+                    <div class="row">
+                        <div class="col ms-5 col-xl-5">
                             <label for="res-redes">Redes sociales</label>
                                 @foreach($proyecto->Redes as $redes1)
                                     <div class='form-group'>

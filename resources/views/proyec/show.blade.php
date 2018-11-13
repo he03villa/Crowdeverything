@@ -180,6 +180,17 @@
                             <h1>No hay recurso en este proyecto</h1>
                         @endif
                     </div>
+                    @if(Auth::user() != NULL)
+                        @if($proyecto->user_id == Auth::user()->id)
+                            <div class="row" style="background-color: white; margin-left: 5px">
+                                <div class="recuro_mas">
+                                    @can('recur.store')
+                                        <a href="#rec" data-toggle="modal">Agregar recurso</a>
+                                    @endcan
+                                </div>
+                            </div>
+                        @endif
+                    @endif
               </div>
               <div class="row" style="background-color: white; margin-left: 5px; margin-top: 20px">
                     <div class="col-ms-12">

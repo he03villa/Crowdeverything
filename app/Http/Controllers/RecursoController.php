@@ -44,13 +44,22 @@ class RecursoController extends Controller
                     $recur = Recurso::where('tipo_recurso_id',1)
                                     ->Where('proyecto_id',$request->get('id_proyecto'))
                                     ->get();
-                    if ($request->get('recurso') == NULL) {
-                        return response(2);
+                    if (count($recur)>0) {
+                        if ($request->get('recurso') == NULL) {
+                            return response(2);
+                        } else {
+                            $recurso = new Recurso();
+                            $recur->get(0)->costo = $request->get('recurso') + $recur->get(0)->costo;
+                            $recurso = $recur->get(0);
+                            $recurso->save();
+                            return response(6);
+                        }
                     } else {
-                        $recurso = new Recurso();
-                        $recur->get(0)->costo = $request->get('recurso') + $recur->get(0)->costo;
-                        $recurso = $recur->get(0);
-                        $recurso->save();
+                        Recurso::create([
+                            'costo' => $request->get('recurso'),
+                            'tipo_recurso_id' => 1,
+                            'proyecto_id' => $request->get('id_proyecto'),
+                        ]);
                         return response(6);
                     }
                 } else {

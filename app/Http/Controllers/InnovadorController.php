@@ -357,7 +357,6 @@ class InnovadorController extends Controller
         if($request->file('ImageUpload') != NULL) $proyecto->foto = $request->file('ImageUpload')->store('public');
         $proyecto->nombre_proyecto = $request->get('nombre_proyecto');
         $proyecto->descripcion = $request->get('descripcion');
-        $proyecto->publicacion = 0;
         $proyecto->user_id = $request->get('user_id');
         $proyecto->tipo_proyecto_id = $tipo_proyecto->get(0)->id;
         $proyecto->save();

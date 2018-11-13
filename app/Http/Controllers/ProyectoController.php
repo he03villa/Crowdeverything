@@ -215,6 +215,7 @@ class ProyectoController extends Controller
                         $donacion->usuario_id = $request->get('id_user');
                         $donacion->costo = $request->get('costo');
                         $donacion->anonimo = $anonimo;
+                        //return response($donacion);
                         $donacion->save();
                         return response(4);
                     }

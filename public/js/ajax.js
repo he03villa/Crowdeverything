@@ -3,6 +3,7 @@ $(document).ready(function(){
         var data = $('#financiero').serialize();
         var url = $('#financiero').attr('action');
         var post = $('#financiero').attr('method');
+        console.log(data);
         $.ajax({
             type: post,
             url: url,
@@ -20,7 +21,7 @@ $(document).ready(function(){
                         } else{
                             if (res == 4) {
                                 swal("Good job!", "La donacion ya fue regitrada con exito", "success");
-                            }
+                            } 
                         }
                     }
                 }
@@ -113,6 +114,8 @@ $(document).ready(function(){
                                 } else {
                                     if (res == 6) {
                                         swal("Good job!", "El recurso se ingreso exitosamente", "success");
+                                    } else {
+                                        console.log(res);
                                     }
                                 }
                             }
