@@ -13,7 +13,10 @@
                         <div class="row">
                             <div class="publicar">
                                 <label for="">Publicar</label>
-                                <a href="#publicar" data-toggle="modal">Publicar <i class="fas fa-upload"></i></a>
+                                {!! Form::open(['route' => ['eva.update',$proyecto->id],'id'=>'publica', 'method' => 'PUT']) !!}
+                                    @csrf
+                                    <a href="" id="aceptar_publicar">Publicar <i class="fas fa-upload"></i></a>
+                                {!! Form::close() !!}
                             </div>
                         </div>
                     </div>
@@ -143,35 +146,6 @@
                         </div>
                     </div>
               </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="publicar" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Fecha de duración del proyecto</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                {!! Form::open(['route' => ['eva.update',$proyecto->id],'id'=>'publica', 'method' => 'PUT']) !!}
-                    @csrf
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-ms-6 col-xl-6">
-                                <input type="date" name="fecha_inical" id="fecha_inical" class="form-control">
-                            </div>
-                            <div class="col-ms-6 col-xl-6">
-                                <input type="date" name="fecha_final" id="fecha_final" class="form-control">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <input type="button" value="Publicar" id="aceptar_publicar">
-                        <a href="" data-dismiss="modal" id="cerrar">Cerrar</a>
-                    </div>
-                {!! Form::close() !!}
             </div>
         </div>
     </div>
