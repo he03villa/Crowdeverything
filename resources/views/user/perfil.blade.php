@@ -23,7 +23,7 @@
         </div>
         <div class="row">
             <div class="col-ms-6 col-xl-6">
-                <table class="table table-hover">
+                <table id='table' class="table table-hover">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
@@ -62,4 +62,5 @@
             </div>
         </div>
     </div>
+    {{ Html::script('js/ajax1.js') }}
 @endsection
