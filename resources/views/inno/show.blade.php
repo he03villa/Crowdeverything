@@ -106,7 +106,7 @@
                             <h1 style="color:red">No se ha publicado su proyecto</h1>
                         @else
                             @if($proyecto->publicacion == 1)
-                                <h1 style="color:gren">EL proyecto se publico</h1>
+                                <h1 style="color:green">EL proyecto se publico</h1>
                             @endif
                         @endif
                     </div>                    

@@ -19,6 +19,7 @@ class Proyecto extends Model
         'fecha_final',
         'user_id',
         'tipo_proyecto_id',
+        'created_at',
     ];
 
     public function User(){
