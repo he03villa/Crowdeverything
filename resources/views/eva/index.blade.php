@@ -24,7 +24,7 @@
                                     $i=1;
                                 @endphp
                                 @foreach($proyectos as $proyecto)
-                                    @if($proyecto->publicacion == 1)
+                                    @if($proyecto->publicacion == 0)
                                         <tr>
                                             <td>{{ $i++ }}</td>
                                             <td>{{ $proyecto->nombre_proyecto }}</td>
