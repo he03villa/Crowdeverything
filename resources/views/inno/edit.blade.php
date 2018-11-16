@@ -65,7 +65,7 @@
                             <div id="res-recurso"></div>
                             <button id="recurso" type="button" class="btn btn-secondary" onclick="recursos({{ $tipo_recursos }})">Agregar recurso</button>
                         </div>
-                        <div class="col-ms-8 col-xl-4">
+                        <div class="col-ms-8 col-xl-8">
                             <label for="res-foto">Fotos</label>
                             <table class="table table-hover">
                                 <thead>
@@ -75,7 +75,7 @@
                                         <td>opción</td>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="ima1">
                                     @php
                                         $i = 1;
                                     @endphp
@@ -87,13 +87,14 @@
                                             <td>
                                                 <div id="estilo-foto">
                                                     <p> <i class="fas fa-file-image"></i> Agregar foto</p>
-                                                    <input type='file' class='form-control' id='foto' name='foto[]' onchange="ShowImagePreview(this, document.getElementById('{{ 'imagePreview'.$i }}'))">
+                                                    <input type='file' id='foto' name='foto[]' onchange="ShowImagePreview(this, document.getElementById('{{ 'imagePreview'.$i }}'))">
                                                 </div>
                                             </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
-                            </table>
+                            </table><br>
+                            <button type="button" class="btn btn-primary" onclick="imagen({{ $i }})">Agregar Foto</button>
                         </div>
                     </div>
                     <div class="row">

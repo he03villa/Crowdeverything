@@ -126,3 +126,20 @@ function cambioOpcion(){
         }
     }
 }
+
+function imagen(x){
+    var x1 = x+1;
+    $('#ima1').append(
+        "<tr>"+
+            "<td>"+x+"</td>"+
+            "<input type='hidden' name='foto_id[]' value='0'>"+
+            "<td><img src='../../../img/perfil-proyectos.jpg' id='imagePreview"+x1+"' title='perfil' width='100px' height='80px'></td>"+
+            "<td>"+
+                "<div id='estilo-foto'>"+
+                    "<p> <i class='fas fa-file-image'></i> Agregar foto</p>"+
+                    '<input type="file" id="foto" name="foto[]" onchange="ShowImagePreview(this,document.getElementById(\'imagePreview'+x1+'\'))">'+
+                "</div>"+
+            "</td>"+
+        "</tr>"
+    );
+}

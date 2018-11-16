@@ -21,6 +21,7 @@
                 @endcan                
             </div>
         </div>
+        <br>
         <div class="row">
             <div class="col-ms-6 col-xl-6">
                 <table id='table' class="table table-hover">
