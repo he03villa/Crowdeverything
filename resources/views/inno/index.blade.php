@@ -10,7 +10,10 @@
                     <div class="row">
                         <div class="col-ms-6 col-xl-6">
                             {{ Html::image('/img/perfil-proyectos.jpg','Imagen no encontrada', array('id' => 'imagePreview', 'title' => 'perfil', 'class' => 'perfil-1')) }}
-                            <input type="file" name="ImageUpload" accept="imagen/jpeg, imagen/png" onchange="ShowImagePreview(this, document.getElementById('imagePreview'))" />
+                            <div id="estilo-foto">
+                                <p> <i class="fas fa-file-image"></i> Agregar foto</p>
+                                <input type="file" id="foto" name="ImageUpload" accept="imagen/jpeg, imagen/png" onchange="ShowImagePreview(this, document.getElementById('imagePreview'))" />
+                            </div>
                         </div>
                         <div class="col-ms-6 col-lx-4">
                             <div class="form-group">
