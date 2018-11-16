@@ -50,7 +50,7 @@
                             <div class="col-ms-6" id="">
                                 <label for="res-foto">Fotos</label>
                                 <div id="res-foto"></div>
-                                <button id="foto" type="button" class="btn btn-secondary" onclick="fotos()">Agregar <i class="fas fa-plus"></i> foto</button>
+                                <button id="foto1" type="button" class="btn btn-secondary" onclick="fotos()">Agregar <i class="fas fa-plus"></i> foto</button>
                             </div>
                         </div>
                         <div class="col-ms-4 col-xl-4">

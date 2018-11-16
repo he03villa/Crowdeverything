@@ -48,13 +48,13 @@ class InnovadorController extends Controller
     {
         $proyecto = new Proyecto();
         $tipo_proyecto = Tipo_proyecto::where('nombre',$request->get('tipo_proyecto'))->get();
-        $proyecto->foto = $request->file('ImageUpload')->store('public');
+        if($request->file('ImageUpload') != NULL) $proyecto->foto = $request->file('ImageUpload')->store('public');
         $proyecto->nombre_proyecto = $request->get('nombre_proyecto');
         $proyecto->descripcion = $request->get('descripcion');
         $proyecto->publicacion = 0;
         $proyecto->user_id = $request->get('user_id');
         $proyecto->tipo_proyecto_id = $tipo_proyecto->get(0)->id;
-        $proyecto->save();
+        //$proyecto->save();
         
         $recuso_nombre = $request->get('nombre');
         $recuso_re = $request->get('recurso');
@@ -62,23 +62,40 @@ class InnovadorController extends Controller
         $recursos = array();
         $tipo = array();
 
-        foreach($recuso_tipo as $re){
-            $tipo_re = Tipo_recurso::where('nombre',$re)->get();
-            $tipo[] = $tipo_re->get(0)->id;
-        }
-
-        for ($i=0; $i < count($recuso_nombre); $i++) { 
-            $recursos[] = [
-                'nombre_recurso' => $recuso_nombre[$i],
-                'costo' => $recuso_re[$i],
-                'tipo_recurso_id' => $tipo[$i]
-            ];
+        if ($recuso_tipo != NULL) {
+            foreach($recuso_tipo as $re){
+                $tipo_re = Tipo_recurso::where('nombre',$re)->get();
+                $tipo[] = $tipo_re->get(0)->id;
+            }
+    
+            for ($i=0; $i < count($tipo); $i++) { 
+                if ($tipo[$i] == 1) {
+                    $recursos[] = [
+                        'costo' => $recuso_re[$i],
+                        'tipo_recurso_id' => $tipo[$i]
+                    ];
+                } else {
+                    $recursos[] = [
+                        'nombre_recurso' => $recuso_nombre[$i],
+                        'costo' => $recuso_re[$i],
+                        'tipo_recurso_id' => $tipo[$i]
+                    ];
+                }
+            }
+        } else {
+            $recursos = 'null';
         }
 
         $fotos = $request->file('foto');
         $proyecto_foto = array();
-        foreach($fotos as $fot){
-            $proyecto_foto[] = $fot->store('public');
+        if ($fotos != NULL) {
+            foreach($fotos as $fot){
+                if ($fot != NULL) {
+                    $proyecto_foto[] = $fot->store('public');
+                }
+            }
+        } else {
+            $proyecto_foto[] = 'null';
         }
         
         $foto = array();
@@ -91,24 +108,28 @@ class InnovadorController extends Controller
         $redes_url = $request->get('url');
         $redes_tipo = $request->get('redes');
         $tipo_redes = array();
-        foreach($redes_tipo as $re){
-            $tipo_re = Redes_social::where('nombre',$re)->get();
-            $tipo_redes[] = $tipo_re->get(0)->id;
-        }
-
         $redes = array();
-        for ($i=0; $i < count($redes_url); $i++) { 
-            $redes[] = [
-                'url' => $redes_url[$i],
-                'redes_socials_id' => $tipo_redes[$i]
-            ];
+        if ($redes_tipo != NULL) {
+            foreach($redes_tipo as $re){
+                $tipo_re = Redes_social::where('nombre',$re)->get();
+                $tipo_redes[] = $tipo_re->get(0)->id;
+            }
+    
+            for ($i=0; $i < count($tipo_redes); $i++) { 
+                $redes[] = [
+                    'url' => $redes_url[$i],
+                    'redes_socials_id' => $tipo_redes[$i]
+                ];
+            }
+        } else {
+            $redes = 'null';
         }
 
-        $proyecto->Recurso()->createMany($recursos);
+        /*$proyecto->Recurso()->createMany($recursos);
         $proyecto->Foto()->createMany($foto);
         $proyecto->Redes()->createMany($redes);
 
-        return redirect()->route('user.perfil', $request->get('user_id'))->with('info', 'Proyecto registrado con exito');
+        return redirect()->route('user.perfil', $request->get('user_id'))->with('info', 'Proyecto registrado con exito');*/
     }
 
     /**
