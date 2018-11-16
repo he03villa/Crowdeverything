@@ -57,9 +57,14 @@
                                             <option>{{ $tipo_recurso->nombre }}</option>
                                         @endforeach
                                     </select>
-                                    <input type="hidden" name="id[]" value="{{ $recurso->id }}">
-                                    <input type='text' class='form-control' name='nombre[]' id='re' placeholder='Nombre' value="{{ $recurso->nombre_recurso }}">
-                                    <input type='number' class='form-control' name='recurso[]' id='re' placeholder='Recurso' value="{{ $recurso->costo }}">
+                                    @if($recurso->tipo_recurso_id == 1)
+                                        <input type="hidden" name="id[]" value="{{ $recurso->id }}">
+                                        <input type='number' class='form-control' name='recurso[]' id='re' placeholder='Recurso' value="{{ $recurso->costo }}">
+                                    @else
+                                        <input type="hidden" name="id[]" value="{{ $recurso->id }}">
+                                        <input type='text' class='form-control' name='nombre[]' id='re' placeholder='Nombre' value="{{ $recurso->nombre_recurso }}">
+                                        <input type='number' class='form-control' name='recurso[]' id='re' placeholder='Recurso' value="{{ $recurso->costo }}">
+                                    @endif
                                 </div>
                             @endforeach
                             <div id="res-recurso"></div>
